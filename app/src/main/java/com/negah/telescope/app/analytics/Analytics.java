@@ -2,11 +2,11 @@ package com.negah.telescope.app.analytics;
 
 import android.app.Application;
 
-import com.google.android.gms.analytics.Tracker;
+
 
 public class Analytics extends Application {
 
-    private Tracker mTracker;
+    //private Tracker mTracker;
 
     @Override
     public void onCreate() {

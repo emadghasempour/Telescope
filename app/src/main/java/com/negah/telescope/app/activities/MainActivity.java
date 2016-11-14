@@ -16,14 +16,8 @@ import android.support.v7.widget.Toolbar;
 import android.view.Menu;
 import android.view.MenuInflater;
 import android.view.MenuItem;
-import android.view.View;
-import android.widget.TextView;
 
-import com.google.android.gms.ads.AdListener;
-import com.google.android.gms.ads.AdRequest;
-import com.google.android.gms.ads.AdView;
-import com.google.android.gms.analytics.GoogleAnalytics;
-import com.onesignal.OneSignal;
+
 import com.negah.telescope.app.R;
 import com.negah.telescope.app.fragments.FragmentFavorite;
 import com.negah.telescope.app.fragments.TabFragment;
@@ -37,7 +31,8 @@ public class MainActivity extends AppCompatActivity {
     FragmentManager mFragmentManager;
     FragmentTransaction mFragmentTransaction;
     SharedPreferences preferences;
-    private AdView mAdView;
+
+    //private AdView mAdView;
     //private StartAppAd startAppAd = new StartAppAd(this);
 
     @Override
@@ -47,7 +42,7 @@ public class MainActivity extends AppCompatActivity {
 
         setContentView(R.layout.activity_main);
 
-        OneSignal.idsAvailable(new OneSignal.IdsAvailableHandler() {
+        /*OneSignal.idsAvailable(new OneSignal.IdsAvailableHandler() {
             @Override
             public void idsAvailable(String userId, String registrationId) {
                 String text = "OneSignal UserID:\n" + userId + "\n\n";
@@ -60,7 +55,7 @@ public class MainActivity extends AppCompatActivity {
                 TextView textView = (TextView)findViewById(R.id.debug_view);
                 textView.setText(text);
             }
-        });
+        });*/
 
         preferences = PreferenceManager.getDefaultSharedPreferences(getBaseContext());
 
@@ -70,7 +65,7 @@ public class MainActivity extends AppCompatActivity {
         }
 
         //show admob banner ad
-        mAdView = (AdView) findViewById(R.id.adView);
+       /* mAdView = (AdView) findViewById(R.id.adView);
         mAdView.loadAd(new AdRequest.Builder().build());
         mAdView.setAdListener(new AdListener() {
 
@@ -95,7 +90,7 @@ public class MainActivity extends AppCompatActivity {
             public void onAdLoaded() {
                 mAdView.setVisibility(View.VISIBLE);
             }
-        });
+        });*/
 
 //        startAppAd.loadAd(new AdEventListener() {
 //            @Override
@@ -166,7 +161,6 @@ public class MainActivity extends AppCompatActivity {
 
         // init analytics tracker
       //  ((Analytics) getApplication()).getTracker();
-
     }
 
     @Override
@@ -216,31 +210,31 @@ public class MainActivity extends AppCompatActivity {
     public void onStart() {
         super.onStart();
         // analytics
-        GoogleAnalytics.getInstance(this).reportActivityStart(this);
+        //GoogleAnalytics.getInstance(this).reportActivityStart(this);
     }
 
     @Override
     public void onStop() {
         super.onStop();
         // analytics
-        GoogleAnalytics.getInstance(this).reportActivityStop(this);
+       // GoogleAnalytics.getInstance(this).reportActivityStop(this);
     }
 
     @Override
     protected void onPause() {
-        mAdView.pause();
+        //mAdView.pause();
         super.onPause();
     }
 
     @Override
     protected void onResume() {
         super.onResume();
-        mAdView.resume();
+       // mAdView.resume();
     }
 
     @Override
     protected void onDestroy() {
-        mAdView.destroy();
+        //mAdView.destroy();
         super.onDestroy();
     }
 

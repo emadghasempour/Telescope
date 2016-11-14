@@ -21,11 +21,7 @@ import android.widget.ListView;
 import android.widget.ProgressBar;
 import android.widget.Toast;
 
-import com.google.android.gms.ads.AdListener;
-import com.google.android.gms.ads.AdRequest;
-import com.google.android.gms.ads.AdView;
-import com.google.android.gms.ads.InterstitialAd;
-import com.google.android.gms.analytics.GoogleAnalytics;
+
 import com.negah.telescope.app.Config;
 import com.negah.telescope.app.R;
 import com.negah.telescope.app.adapters.AdapterNewsByCategory;
@@ -51,10 +47,10 @@ public class ActivityNewsListByCategory extends AppCompatActivity {
     private ItemNewsList object;
     JsonUtils util;
     int textlength = 0;
-    private AdView mAdView;
+    //private AdView mAdView;
     SwipeRefreshLayout swipeRefreshLayout = null;
     ProgressBar progressBar;
-    private InterstitialAd interstitial;
+    //private InterstitialAd interstitial;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -71,7 +67,7 @@ public class ActivityNewsListByCategory extends AppCompatActivity {
         swipeRefreshLayout = (SwipeRefreshLayout) findViewById(R.id.swipeRefreshLayout);
         swipeRefreshLayout.setColorSchemeResources(R.color.orange, R.color.green, R.color.blue, R.color.red);
 
-        mAdView = (AdView) findViewById(R.id.adView);
+        /*mAdView = (AdView) findViewById(R.id.adView);
         mAdView.loadAd(new AdRequest.Builder().build());
         mAdView.setAdListener(new AdListener() {
 
@@ -96,7 +92,7 @@ public class ActivityNewsListByCategory extends AppCompatActivity {
             public void onAdLoaded() {
                 mAdView.setVisibility(View.VISIBLE);
             }
-        });
+        });*/
 
         final Toolbar toolbar = (Toolbar) findViewById(R.id.toolbar);
         setSupportActionBar(toolbar);
@@ -150,18 +146,6 @@ public class ActivityNewsListByCategory extends AppCompatActivity {
                         swipeRefreshLayout.setRefreshing(false);
                         adapter.clear();
                         new MyTask().execute(Config.SERVER_URL + "/api.php?cat_id=" + JsonConfig.CATEGORY_IDD);
-
-                        interstitial = new InterstitialAd(getApplicationContext());
-                        interstitial.setAdUnitId(getString(R.string.admob_interstitial_id));
-                        AdRequest adRequest = new AdRequest.Builder().build();
-                        interstitial.loadAd(adRequest);
-                        interstitial.setAdListener(new AdListener() {
-                            public void onAdLoaded() {
-                                if (interstitial.isLoaded()) {
-                                    interstitial.show();
-                                }
-                            }
-                        });
                     }
                 }, 3000);
             }
@@ -369,31 +353,31 @@ public class ActivityNewsListByCategory extends AppCompatActivity {
     public void onStart() {
         super.onStart();
         // analytics
-        GoogleAnalytics.getInstance(this).reportActivityStart(this);
+        //GoogleAnalytics.getInstance(this).reportActivityStart(this);
     }
 
     @Override
     public void onStop() {
         super.onStop();
         // analytics
-        GoogleAnalytics.getInstance(this).reportActivityStop(this);
+        //GoogleAnalytics.getInstance(this).reportActivityStop(this);
     }
 
     @Override
     protected void onPause() {
-        mAdView.pause();
+       // mAdView.pause();
         super.onPause();
     }
 
     @Override
     protected void onResume() {
         super.onResume();
-        mAdView.resume();
+       // mAdView.resume();
     }
 
     @Override
     protected void onDestroy() {
-        mAdView.destroy();
+        //mAdView.destroy();
         super.onDestroy();
     }
 

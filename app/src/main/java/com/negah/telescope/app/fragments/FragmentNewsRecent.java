@@ -10,6 +10,7 @@ import android.support.v4.app.Fragment;
 import android.support.v4.view.MenuItemCompat;
 import android.support.v4.widget.SwipeRefreshLayout;
 import android.support.v7.widget.SearchView;
+import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.Menu;
 import android.view.MenuInflater;
@@ -22,9 +23,7 @@ import android.widget.ListView;
 import android.widget.ProgressBar;
 import android.widget.Toast;
 
-import com.google.android.gms.ads.AdListener;
-import com.google.android.gms.ads.AdRequest;
-import com.google.android.gms.ads.InterstitialAd;
+
 import com.negah.telescope.app.Config;
 import com.negah.telescope.app.R;
 import com.negah.telescope.app.activities.ActivityNewsDetail;
@@ -32,6 +31,11 @@ import com.negah.telescope.app.adapters.AdapterRecent;
 import com.negah.telescope.app.json.JsonConfig;
 import com.negah.telescope.app.json.JsonUtils;
 import com.negah.telescope.app.models.ItemRecent;
+import com.negah.telescope.app.models.PostDetail;
+import com.negah.telescope.app.services.api.APIs;
+import com.negah.telescope.app.services.lists.TelescopeCategories;
+import com.negah.telescope.app.services.lists.TelescopePostDetails;
+import com.negah.telescope.app.services.lists.TelescopeRecent;
 
 import org.json.JSONArray;
 import org.json.JSONException;
@@ -39,6 +43,12 @@ import org.json.JSONObject;
 
 import java.util.ArrayList;
 import java.util.List;
+
+import retrofit2.Call;
+import retrofit2.Callback;
+import retrofit2.Response;
+import retrofit2.Retrofit;
+import retrofit2.converter.gson.GsonConverterFactory;
 
 public class FragmentNewsRecent extends Fragment {
 
@@ -52,8 +62,8 @@ public class FragmentNewsRecent extends Fragment {
     int textlength = 0;
     SwipeRefreshLayout swipeRefreshLayout = null;
     ProgressBar progressBar;
-    private InterstitialAd interstitial;
-
+    //private InterstitialAd interstitial;
+    String TAG=FragmentNewsRecent.class.getSimpleName();
     @Nullable
     @Override
     public View onCreateView(LayoutInflater inflater, ViewGroup container, Bundle savedInstanceState) {
@@ -105,17 +115,7 @@ public class FragmentNewsRecent extends Fragment {
                         adapter.clear();
                         new RefreshTask().execute(Config.SERVER_URL + "/api.php?latest_news=70");
 
-                        interstitial = new InterstitialAd(getActivity());
-                        interstitial.setAdUnitId(getString(R.string.admob_interstitial_id));
-                        AdRequest adRequest = new AdRequest.Builder().build();
-                        interstitial.loadAd(adRequest);
-                        interstitial.setAdListener(new AdListener() {
-                            public void onAdLoaded() {
-                                if (interstitial.isLoaded()) {
-                                    interstitial.show();
-                                }
-                            }
-                        });
+
                     }
                 }, 3000);
             }
@@ -152,6 +152,51 @@ public class FragmentNewsRecent extends Fragment {
                 JsonConfig.NEWS_ITEMID = object.getCatId();
 
                 startActivity(intplay);
+            }
+        });
+
+        Retrofit retrofit=new Retrofit.Builder()
+                .baseUrl("http://www.negahgames.com")
+                .addConverterFactory(GsonConverterFactory.create())
+                .build();
+        APIs apIs=retrofit.create(APIs.class);
+        Call<PostDetail> call =apIs.loadPostDetails("12");
+        /*Call<TelescopeRecent> call=apIs.loadRecent();
+        call.enqueue(new Callback<TelescopeRecent>() {
+            @Override
+            public void onResponse(Call<TelescopeRecent> call, Response<TelescopeRecent> response) {
+                Log.d(TAG,"" + response.body().items.size());
+                Log.d(TAG,""+response.body().items.toString());
+            }
+
+            @Override
+            public void onFailure(Call<TelescopeRecent> call, Throwable t) {
+                Log.d(TAG+"fail",t.getLocalizedMessage());
+            }
+        });*/
+        /*call.enqueue(new Callback<TelescopeCategories>() {
+            @Override
+            public void onResponse(Call<TelescopeCategories> call, Response<TelescopeCategories> response) {
+                Log.d(TAG,"" + response.body().categories.size());
+                Log.d(TAG,""+response.body().categories.toString());
+            }
+
+            @Override
+            public void onFailure(Call<TelescopeCategories> call, Throwable t) {
+
+            }
+        });*/
+
+        call.enqueue(new Callback<PostDetail>() {
+            @Override
+            public void onResponse(Call<PostDetail> call, Response<PostDetail> response) {
+                Log.d(TAG,"SUCCESS");
+                Log.d(TAG,response.body().getVendor());
+            }
+
+            @Override
+            public void onFailure(Call<PostDetail> call, Throwable t) {
+                Log.d(TAG,"FAILED " +t.getLocalizedMessage() );
             }
         });
 

@@ -23,9 +23,7 @@ import android.widget.GridView;
 import android.widget.ProgressBar;
 import android.widget.Toast;
 
-import com.google.android.gms.ads.AdListener;
-import com.google.android.gms.ads.AdRequest;
-import com.google.android.gms.ads.InterstitialAd;
+
 import com.negah.telescope.app.Config;
 import com.negah.telescope.app.R;
 import com.negah.telescope.app.activities.ActivityNewsListByCategory;
@@ -52,7 +50,7 @@ public class FragmentNewsCategory extends Fragment {
     int textlength = 0;
     SwipeRefreshLayout swipeRefreshLayout = null;
     ProgressBar progressBar;
-    private InterstitialAd interstitial;
+    //private InterstitialAd interstitial;
 
     @Nullable
     @Override
@@ -92,17 +90,7 @@ public class FragmentNewsCategory extends Fragment {
                         adapter.clear();
                         new RefreshTask().execute(Config.SERVER_URL + "/api.php");
 
-                        interstitial = new InterstitialAd(getActivity());
-                        interstitial.setAdUnitId(getString(R.string.admob_interstitial_id));
-                        AdRequest adRequest = new AdRequest.Builder().build();
-                        interstitial.loadAd(adRequest);
-                        interstitial.setAdListener(new AdListener() {
-                            public void onAdLoaded() {
-                                if (interstitial.isLoaded()) {
-                                    interstitial.show();
-                                }
-                            }
-                        });
+
                     }
                 }, 3000);
             }

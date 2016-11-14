@@ -18,9 +18,6 @@ import android.support.v7.app.ActionBar;
 import android.text.TextUtils;
 import android.view.MenuItem;
 
-import com.google.android.gms.ads.AdListener;
-import com.google.android.gms.ads.AdRequest;
-import com.google.android.gms.ads.InterstitialAd;
 import com.negah.telescope.app.R;
 
 import java.util.List;
@@ -140,7 +137,7 @@ public class SettingsActivity extends PreferenceActivity {
     @TargetApi(Build.VERSION_CODES.HONEYCOMB)
      public static class NotificationPreferenceFragment extends PreferenceFragment {
 
-        InterstitialAd interstitial;
+       // InterstitialAd interstitial;
 
         @Override
         public void onCreate(Bundle savedInstanceState) {
@@ -148,17 +145,7 @@ public class SettingsActivity extends PreferenceActivity {
             addPreferencesFromResource(R.xml.pref_notification);
             setHasOptionsMenu(true);
 
-            interstitial = new InterstitialAd(getActivity());
-            interstitial.setAdUnitId(getString(R.string.admob_interstitial_id));
-            AdRequest adRequest = new AdRequest.Builder().build();
-            interstitial.loadAd(adRequest);
-            interstitial.setAdListener(new AdListener() {
-                public void onAdLoaded() {
-                    if (interstitial.isLoaded()) {
-                        interstitial.show();
-                    }
-                }
-            });
+
 
             bindPreferenceSummaryToValue(findPreference("notifications_new_message_ringtone"));
         }

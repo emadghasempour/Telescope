@@ -66,19 +66,19 @@
             android:resource="@xml/analytics_global_tracker" />
 
         <!-- Enable background dispatching to improve delivery on non-Google Play devices -->
-        <receiver
+       <!-- <receiver
             android:name="com.google.android.gms.analytics.AnalyticsReceiver"
             android:enabled="true">
             <intent-filter>
                 <action android:name="com.google.android.gms.analytics.ANALYTICS_DISPATCH"/>
             </intent-filter>
-        </receiver>
-        <service
+        </receiver>-->
+       <!-- <service
             android:name="com.google.android.gms.analytics.AnalyticsService"
             android:enabled="true"
             android:exported="false"/>
 
-        <!-- Enable Google Play Store Campaign reports -->
+        &lt;!&ndash; Enable Google Play Store Campaign reports &ndash;&gt;
         <receiver
             android:name="com.google.android.gms.analytics.CampaignTrackingReceiver"
             android:exported="true"
@@ -86,10 +86,10 @@
             <intent-filter>
                 <action android:name="com.android.vending.INSTALL_REFERRER"/>
             </intent-filter>
-        </receiver>
-        <service
+        </receiver>-->
+        <!--<service
             android:name="com.google.android.gms.analytics.CampaignTrackingService"
-            android:enabled="true"/>
+            android:enabled="true"/>-->
 
         <!--startapp-->
         <activity android:name="com.startapp.android.publish.list3d.List3DActivity"
@@ -103,9 +103,9 @@
             android:theme="@android:style/Theme"
             android:configChanges="orientation|keyboardHidden|screenSize" />
 
-        <activity
+        <!--<activity
             android:name="com.google.android.gms.ads.AdActivity"
-            android:configChanges="keyboard|keyboardHidden|orientation|screenLayout|uiMode|screenSize|smallestScreenSize" />
+            android:configChanges="keyboard|keyboardHidden|orientation|screenLayout|uiMode|screenSize|smallestScreenSize" />-->
 
     </application>
 

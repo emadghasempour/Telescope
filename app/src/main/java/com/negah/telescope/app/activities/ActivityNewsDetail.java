@@ -26,11 +26,6 @@ import android.widget.ProgressBar;
 import android.widget.TextView;
 import android.widget.Toast;
 
-import com.google.android.gms.ads.AdListener;
-import com.google.android.gms.ads.AdRequest;
-import com.google.android.gms.ads.AdView;
-import com.google.android.gms.ads.InterstitialAd;
-import com.google.android.gms.analytics.GoogleAnalytics;
 import com.negah.telescope.app.Config;
 import com.negah.telescope.app.R;
 import com.negah.telescope.app.cache.ImageLoader;
@@ -64,8 +59,8 @@ public class ActivityNewsDetail extends AppCompatActivity {
     CollapsingToolbarLayout collapsingToolbarLayout;
     ProgressBar progressBar;
     CoordinatorLayout coordinatorLayout;
-    private AdView mAdView;
-    private InterstitialAd interstitial;
+   // private AdView mAdView;
+   // private InterstitialAd interstitial;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -87,7 +82,7 @@ public class ActivityNewsDetail extends AppCompatActivity {
             getSupportActionBar().setTitle("");
         }
 
-        mAdView = (AdView) findViewById(R.id.adView);
+       /* mAdView = (AdView) findViewById(R.id.adView);
         mAdView.loadAd(new AdRequest.Builder().build());
         mAdView.setAdListener(new AdListener() {
 
@@ -112,7 +107,7 @@ public class ActivityNewsDetail extends AppCompatActivity {
             public void onAdLoaded() {
                 mAdView.setVisibility(View.VISIBLE);
             }
-        });
+        });*/
 
         collapsingToolbarLayout = (CollapsingToolbarLayout) findViewById(R.id.collapsing_toolbar);
         collapsingToolbarLayout.setTitle("");
@@ -276,17 +271,7 @@ public class ActivityNewsDetail extends AppCompatActivity {
                     Toast.makeText(getApplicationContext(), "Added to Favorite", Toast.LENGTH_SHORT).show();
                     img_fav.setImageResource(R.drawable.ic_favorite_white);
 
-                    interstitial = new InterstitialAd(getApplicationContext());
-                    interstitial.setAdUnitId(getString(R.string.admob_interstitial_id));
-                    AdRequest adRequest = new AdRequest.Builder().build();
-                    interstitial.loadAd(adRequest);
-                    interstitial.setAdListener(new AdListener() {
-                        public void onAdLoaded() {
-                            if (interstitial.isLoaded()) {
-                                interstitial.show();
-                            }
-                        }
-                    });
+
                 } else {
                     if (pojolist.get(0).getCatId().equals(str_cat_id)) {
 
@@ -334,31 +319,31 @@ public class ActivityNewsDetail extends AppCompatActivity {
     public void onStart() {
         super.onStart();
         // analytics
-        GoogleAnalytics.getInstance(this).reportActivityStart(this);
+        //GoogleAnalytics.getInstance(this).reportActivityStart(this);
     }
 
     @Override
     public void onStop() {
         super.onStop();
         // analytics
-        GoogleAnalytics.getInstance(this).reportActivityStop(this);
+        //GoogleAnalytics.getInstance(this).reportActivityStop(this);
     }
 
     @Override
     protected void onPause() {
-        mAdView.pause();
+      //  mAdView.pause();
         super.onPause();
     }
 
     @Override
     protected void onResume() {
         super.onResume();
-        mAdView.resume();
+       // mAdView.resume();
     }
 
     @Override
     protected void onDestroy() {
-        mAdView.destroy();
+        //mAdView.destroy();
         super.onDestroy();
     }
 
