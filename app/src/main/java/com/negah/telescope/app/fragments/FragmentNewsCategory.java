@@ -9,7 +9,9 @@ import android.support.annotation.Nullable;
 import android.support.v4.app.Fragment;
 import android.support.v4.view.MenuItemCompat;
 import android.support.v4.widget.SwipeRefreshLayout;
+import android.support.v7.widget.RecyclerView;
 import android.support.v7.widget.SearchView;
+import android.support.v7.widget.StaggeredGridLayoutManager;
 import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.Menu;
@@ -27,10 +29,16 @@ import android.widget.Toast;
 import com.negah.telescope.app.Config;
 import com.negah.telescope.app.R;
 import com.negah.telescope.app.activities.ActivityNewsListByCategory;
+import com.negah.telescope.app.activities.DetailActivity;
 import com.negah.telescope.app.adapters.AdapterCategory;
+import com.negah.telescope.app.adapters.BannerCategoriesAdapter;
 import com.negah.telescope.app.json.JsonConfig;
 import com.negah.telescope.app.json.JsonUtils;
 import com.negah.telescope.app.models.ItemCategory;
+import com.negah.telescope.app.models.PostDetail;
+import com.negah.telescope.app.services.Network;
+import com.negah.telescope.app.services.api.APIs;
+import com.negah.telescope.app.services.lists.TelescopeCategories;
 
 import org.json.JSONArray;
 import org.json.JSONException;
@@ -38,6 +46,10 @@ import org.json.JSONObject;
 
 import java.util.ArrayList;
 import java.util.List;
+
+import retrofit2.Call;
+import retrofit2.Callback;
+import retrofit2.Response;
 
 public class FragmentNewsCategory extends Fragment {
 
@@ -50,6 +62,7 @@ public class FragmentNewsCategory extends Fragment {
     int textlength = 0;
     SwipeRefreshLayout swipeRefreshLayout = null;
     ProgressBar progressBar;
+    RecyclerView bannerRecyclerView;
     //private InterstitialAd interstitial;
 
     @Nullable
@@ -125,8 +138,26 @@ public class FragmentNewsCategory extends Fragment {
                 Log.e("cat_id", "" + Catid);
                 JsonConfig.CATEGORY_TITLE = object.getCategoryName();
 
-                Intent intcat = new Intent(getActivity(), ActivityNewsListByCategory.class);
+                Intent intcat = new Intent(getActivity(), DetailActivity.class);
                 startActivity(intcat);
+
+            }
+        });
+        bannerRecyclerView= (RecyclerView) v.findViewById(R.id.categories_bannerList);
+        StaggeredGridLayoutManager mStaggeredLayoutManager = new StaggeredGridLayoutManager(1, StaggeredGridLayoutManager.VERTICAL);
+        bannerRecyclerView.setLayoutManager(mStaggeredLayoutManager);
+        APIs apIs=Network.getRetrofit().create(APIs.class);
+        Call<TelescopeCategories> call =apIs.loadCategories();
+        call.enqueue(new Callback<TelescopeCategories>() {
+            @Override
+            public void onResponse(Call<TelescopeCategories> call, Response<TelescopeCategories> response) {
+                Log.d("","" + response.body().categories.size());
+                bannerRecyclerView.setAdapter(new BannerCategoriesAdapter(response.body().categories,getContext()));
+
+            }
+
+            @Override
+            public void onFailure(Call<TelescopeCategories> call, Throwable t) {
 
             }
         });

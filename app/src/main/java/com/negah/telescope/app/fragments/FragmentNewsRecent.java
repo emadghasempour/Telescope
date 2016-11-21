@@ -27,6 +27,9 @@ import android.widget.Toast;
 import com.negah.telescope.app.Config;
 import com.negah.telescope.app.R;
 import com.negah.telescope.app.activities.ActivityNewsDetail;
+import com.negah.telescope.app.activities.ActivitySplash;
+import com.negah.telescope.app.activities.DetailActivity;
+import com.negah.telescope.app.activities.PostActivity;
 import com.negah.telescope.app.adapters.AdapterRecent;
 import com.negah.telescope.app.json.JsonConfig;
 import com.negah.telescope.app.json.JsonUtils;
@@ -139,19 +142,27 @@ public class FragmentNewsRecent extends Fragment {
             }
         });
 
-        listView.setOnItemClickListener(new AdapterView.OnItemClickListener() {
+       /* listView.setOnItemClickListener(new AdapterView.OnItemClickListener() {
 
             @Override
             public void onItemClick(AdapterView<?> arg0, View arg1, int position, long arg3) {
 
-                object = list.get(position);
+               *//* object = list.get(position);
                 int pos = Integer.parseInt(object.getCatId());
 
                 Intent intplay = new Intent(getActivity(), ActivityNewsDetail.class);
                 intplay.putExtra("POSITION", pos);
-                JsonConfig.NEWS_ITEMID = object.getCatId();
-
+                JsonConfig.NEWS_ITEMID = object.getCatId();*//*
+                Intent intplay = new Intent(getActivity(), PostActivity.class);
+                Log.d("position1","detailed");
                 startActivity(intplay);
+            }
+        });*/
+        listView.setOnItemClickListener(new AdapterView.OnItemClickListener() {
+            @Override
+            public void onItemClick(AdapterView<?> adapterView, View view, int i, long l) {
+                Intent i2=new Intent(getActivity(),ActivitySplash.class);
+                getActivity().startActivity(i2);
             }
         });
 
@@ -179,6 +190,7 @@ public class FragmentNewsRecent extends Fragment {
             public void onResponse(Call<TelescopeCategories> call, Response<TelescopeCategories> response) {
                 Log.d(TAG,"" + response.body().categories.size());
                 Log.d(TAG,""+response.body().categories.toString());
+
             }
 
             @Override
@@ -187,7 +199,7 @@ public class FragmentNewsRecent extends Fragment {
             }
         });*/
 
-        call.enqueue(new Callback<PostDetail>() {
+       /* call.enqueue(new Callback<PostDetail>() {
             @Override
             public void onResponse(Call<PostDetail> call, Response<PostDetail> response) {
                 Log.d(TAG,"SUCCESS");
@@ -198,7 +210,7 @@ public class FragmentNewsRecent extends Fragment {
             public void onFailure(Call<PostDetail> call, Throwable t) {
                 Log.d(TAG,"FAILED " +t.getLocalizedMessage() );
             }
-        });
+        });*/
 
         return v;
     }

@@ -2,7 +2,11 @@ package com.negah.telescope.app.adapters;
 
 import android.app.Activity;
 import android.content.Context;
+import android.graphics.Bitmap;
+import android.graphics.BitmapFactory;
+import android.graphics.Color;
 import android.graphics.Typeface;
+import android.support.v7.widget.CardView;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
@@ -24,6 +28,7 @@ public class AdapterCategory extends ArrayAdapter<ItemCategory> {
     ItemCategory object;
     private int row;
     //public ImageLoader imageLoader;
+    String[] color={"#E64A19","#512DA8","#E91E63","#FFC107","#00bcd4","#4caf50"};
 
     public AdapterCategory(Activity act, int resource, List<ItemCategory> arrayList) {
         super(act, resource, arrayList);
@@ -54,7 +59,7 @@ public class AdapterCategory extends ArrayAdapter<ItemCategory> {
 
         holder.title = (TextView) view.findViewById(R.id.category_title);
         holder.image = (ImageView) view.findViewById(R.id.category_image);
-
+        holder.parent= (CardView) view.findViewById(R.id.category_item_parent_layout);
         Typeface font1 = Typeface.createFromAsset(activity.getAssets(), "fonts/Roboto-Regular.ttf");
         holder.title.setTypeface(font1);
 
@@ -63,6 +68,8 @@ public class AdapterCategory extends ArrayAdapter<ItemCategory> {
 
         Picasso.with(getContext()).load(Config.SERVER_URL + "/upload/category/" +
                 object.getCategoryImageurl()).placeholder(R.drawable.ic_thumbnail).into(holder.image);
+       // Bitmap photo= BitmapFactory.decodeResource(activity.getResources(),holder.im)
+        holder.parent.setBackgroundColor(Color.parseColor(color[position]));
 
         return view;
 
@@ -72,6 +79,7 @@ public class AdapterCategory extends ArrayAdapter<ItemCategory> {
 
         public TextView title;
         public ImageView image;
+        public CardView parent;
 
     }
 

@@ -3,6 +3,8 @@
 
     <!--application name-->
     <string name="app_name">Android News App Demo</string>
+    <!--transitions-->
+    <string name="shared_iconImage">iconTransition</string>
 
     <!--tab name-->
     <string name="tab1">Recent News</string>
@@ -90,5 +92,9 @@
     <string name="img_no">No Favorite Found</string>
     <string name="desc">desc</string>
     <string name="menu_fav">Add to Favorite</string>
-    
+    <string name="showRatePanel">امتیاز خود را ثبت کنید</string>
+    <string name="type_your_commnet">نظر شما ...</string>
+
+
+
 </resources>

@@ -14,6 +14,7 @@ import android.support.design.widget.FloatingActionButton;
 import android.support.v7.app.AppCompatActivity;
 import android.support.v7.graphics.Palette;
 import android.support.v7.widget.Toolbar;
+import android.util.Log;
 import android.view.Menu;
 import android.view.MenuItem;
 import android.view.View;
@@ -68,7 +69,7 @@ public class ActivityNewsDetail extends AppCompatActivity {
         //StartAppAd.init(this, getString(R.string.startapp_account_id), getString(R.string.startapp_app_id, false));
 
         setContentView(R.layout.news_detail);
-
+        Log.d("position","detailed activity");
         //StartAppAd.showSlider(this);
 
        // ((Analytics) getApplication()).getTracker();

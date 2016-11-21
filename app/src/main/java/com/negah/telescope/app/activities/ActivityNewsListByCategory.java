@@ -10,6 +10,7 @@ import android.support.v7.app.ActionBar;
 import android.support.v7.app.AppCompatActivity;
 import android.support.v7.widget.SearchView;
 import android.support.v7.widget.Toolbar;
+import android.util.Log;
 import android.view.Menu;
 import android.view.MenuInflater;
 import android.view.MenuItem;
@@ -177,10 +178,10 @@ public class ActivityNewsListByCategory extends AppCompatActivity {
             	object = list.get(position);
                 int pos = Integer.parseInt(object.getCatId());
                 
-                Intent intplay = new Intent(getApplicationContext(), ActivityNewsDetail.class);
+                Intent intplay = new Intent(getApplicationContext(), DetailActivity.class);
                 intplay.putExtra("POSITION", pos);
                 JsonConfig.NEWS_ITEMID = object.getCatId();
-                
+                Log.d("position","starting");
                 startActivity(intplay);
             }
         });

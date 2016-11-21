@@ -21,5 +21,9 @@
     <color name="background_color">#f2f2f2</color>
     <color name="divider">#f2f2f2</color>
     <color name="text_color">#525252</color>
+    <color name="black_lowOP">#74000000</color>
+    <color name="temp">#E64A19</color>
+    <color name="temp2">#512DA8</color>
+    <color name="edt_stroke">#8b8b8b</color>
 
 </resources>

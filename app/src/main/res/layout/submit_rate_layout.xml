@@ -1,0 +1,11 @@
+<?xml version="1.0" encoding="utf-8"?>
+<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="match_parent"
+    android:layout_height="170dp"
+    xmlns:tools="http://schemas.android.com/tools"
+    tools:showIn="@layout/submit_comment_layout"
+    android:layout_below="@id/submit_comment_showrate_chb"
+    android:layout_marginTop="10dp"
+    >
+
+</RelativeLayout>

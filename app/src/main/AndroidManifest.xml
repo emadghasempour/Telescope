@@ -19,7 +19,7 @@
         android:name="com.negah.telescope.app.analytics.Analytics">
 
         <activity
-            android:name="com.negah.telescope.app.activities.ActivitySplash"
+            android:name="com.negah.telescope.app.activities.MainActivity"
             android:label="@string/app_name">
             <intent-filter>
                 <action android:name="android.intent.action.MAIN" />
@@ -28,7 +28,7 @@
             </intent-filter>
         </activity>
         <activity
-            android:name="com.negah.telescope.app.activities.MainActivity"
+            android:name="com.negah.telescope.app.activities.ActivitySplash"
             android:label="@string/app_name"
             android:configChanges="orientation|keyboardHidden|screenSize">
             <intent-filter>
@@ -103,10 +103,17 @@
             android:theme="@android:style/Theme"
             android:configChanges="orientation|keyboardHidden|screenSize" />
 
+
+        <activity
+            android:name="com.negah.telescope.app.activities.DetailActivity"
+            android:configChanges="orientation|keyboardHidden|screenSize">
+        </activity>
+
         <!--<activity
             android:name="com.google.android.gms.ads.AdActivity"
             android:configChanges="keyboard|keyboardHidden|orientation|screenLayout|uiMode|screenSize|smallestScreenSize" />-->
-
+        <activity android:name=".activities.PostActivity"></activity>
+        <activity android:name=".activities.CommentsActivity"></activity>
     </application>
 
 </manifest>

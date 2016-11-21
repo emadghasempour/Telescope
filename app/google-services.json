@@ -1,27 +1,27 @@
 {
   "project_info": {
-    "project_number": "192102569298",
-    "firebase_url": "https://telescope-b50ac.firebaseio.com",
-    "project_id": "telescope-b50ac",
-    "storage_bucket": "telescope-b50ac.appspot.com"
+    "project_number": "490764595456",
+    "firebase_url": "https://review-932b2.firebaseio.com",
+    "project_id": "review-932b2",
+    "storage_bucket": "review-932b2.appspot.com"
   },
   "client": [
     {
       "client_info": {
-        "mobilesdk_app_id": "1:192102569298:android:a7a2194aa5b102ef",
+        "mobilesdk_app_id": "1:490764595456:android:a7a2194aa5b102ef",
         "android_client_info": {
           "package_name": "com.negah.telescope.app"
         }
       },
       "oauth_client": [
         {
-          "client_id": "192102569298-7c7rs1vb63etaivart3rig6ht3hcudfd.apps.googleusercontent.com",
+          "client_id": "490764595456-rsv2mrdts2k581bt7d716o513f0osmsl.apps.googleusercontent.com",
           "client_type": 3
         }
       ],
       "api_key": [
         {
-          "current_key": "AIzaSyBmKpbZQu5aYrLvz45UJRQ2qX85oqZL-tk"
+          "current_key": "AIzaSyDRnRf7Yq8Jv2jAYoCoDOVhEAxAZ4B0WVc"
         }
       ],
       "services": {

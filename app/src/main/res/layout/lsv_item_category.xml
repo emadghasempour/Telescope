@@ -10,8 +10,7 @@
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:foreground="?android:attr/selectableItemBackground"
-        app:cardCornerRadius="4dp"
-        card_view:cardElevation="3sp"
+        android:id="@+id/category_item_parent_layout"
         card_view:cardUseCompatPadding="true">
 
         <LinearLayout
@@ -27,7 +26,7 @@
                 android:layout_width="70dp"
                 android:layout_height="70dp"
                 android:layout_gravity="center_horizontal"
-                android:layout_margin="10dp"
+
                 android:scaleType="centerCrop"
                 app:border_color="@color/divider"
                 app:border_width="0dip"
