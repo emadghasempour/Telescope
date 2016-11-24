@@ -1,19 +1,17 @@
 <?xml version="1.0" encoding="utf-8"?>
-<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
-    xmlns:app="http://schemas.android.com/apk/res-auto"
-    android:orientation="vertical"
-    android:layout_width="match_parent"
-    android:layout_height="match_parent">
-    <android.support.v7.widget.CardView
+ <android.support.v7.widget.CardView
+        xmlns:android="http://schemas.android.com/apk/res/android"
+        xmlns:app="http://schemas.android.com/apk/res-auto"
         android:layout_width="match_parent"
         android:layout_height="270dp"
-
         app:cardElevation="4dp"
         android:layout_margin="10dp"
+        android:background="?android:selectableItemBackground"
         >
         <RelativeLayout
             android:layout_width="match_parent"
             android:layout_height="match_parent"
+
             >
             <ImageView
                 android:id="@+id/recent_post_icon"
@@ -22,11 +20,13 @@
                 android:layout_centerVertical="true"
                 android:layout_alignParentRight="true"
                 android:src="@mipmap/icon"
-                android:scaleType="center"
+                android:scaleType="fitCenter"
                 android:layout_margin="20dp"
+                android:translationZ="10dp"
+
                 />
 
-            <TextView
+            <com.negah.telescope.app.view.CustomFontTextView
                 android:id="@+id/recent_post_appname"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
@@ -34,7 +34,7 @@
                 android:layout_marginTop="40dp"
                 android:layout_toLeftOf="@+id/recent_post_icon"
                 />
-            <TextView
+            <com.negah.telescope.app.view.CustomFontTextView
                 android:id="@+id/recent_post_vendor"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
@@ -43,7 +43,7 @@
                 android:layout_below="@id/recent_post_appname"
                 android:layout_toLeftOf="@+id/recent_post_icon"
                 />
-            <TextView
+            <com.negah.telescope.app.view.CustomFontTextView
                 android:id="@+id/recent_post_title"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
@@ -52,7 +52,7 @@
                 android:text="title"
 
                 />
-            <TextView
+            <com.negah.telescope.app.view.CustomFontTextView
                 android:id="@+id/recent_post_date"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
@@ -65,7 +65,7 @@
                 android:layout_height="60dp"
                 android:layout_alignParentBottom="true"
                 android:background="@color/black_lowOP"
+
                 ></RelativeLayout>
         </RelativeLayout>
     </android.support.v7.widget.CardView>
-</LinearLayout>

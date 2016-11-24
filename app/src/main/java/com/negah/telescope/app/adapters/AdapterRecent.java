@@ -3,6 +3,7 @@ package com.negah.telescope.app.adapters;
 import android.app.Activity;
 import android.content.Context;
 import android.graphics.Typeface;
+import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
@@ -31,6 +32,7 @@ public class AdapterRecent extends ArrayAdapter<ItemRecent> {
         this.row = resource;
         this.item = arrayList;
         //imageLoader = new ImageLoader(activity);
+        Log.d("","");
     }
 
     @Override

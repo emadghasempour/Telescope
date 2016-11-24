@@ -114,6 +114,7 @@
             android:configChanges="keyboard|keyboardHidden|orientation|screenLayout|uiMode|screenSize|smallestScreenSize" />-->
         <activity android:name=".activities.PostActivity"></activity>
         <activity android:name=".activities.CommentsActivity"></activity>
+
     </application>
 
 </manifest>

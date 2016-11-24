@@ -2,9 +2,9 @@
 <resources>
 
     <!--app main color-->
-    <color name="ColorPrimary">#2196F3</color>
-    <color name="ColorPrimaryDark">#1E88E5</color>
-    <color name="ColorAccent">#90CAF9</color>
+    <color name="ColorPrimary">#f44336</color>
+    <color name="ColorPrimaryDark">#b71c1c</color>
+    <color name="ColorAccent">#ef5350</color>
 
     <!--tab color-->
     <color name="tabIndicatorColor">#FFFFFF</color>

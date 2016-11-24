@@ -1,7 +1,13 @@
 <android.support.v4.widget.SwipeRefreshLayout xmlns:android="http://schemas.android.com/apk/res/android"
     android:id="@+id/swipeRefreshLayout"
     android:layout_width="match_parent"
-    android:layout_height="wrap_content">
+    android:layout_height="wrap_content"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    app:layout_behavior="@string/appbar_scrolling_view_behavior"
+
+    tools:showIn="@layout/fragment_recent"
+    >
 
     <RelativeLayout
         android:id="@+id/rootlayout"
@@ -9,15 +15,22 @@
         android:layout_height="match_parent"
         android:background="@color/background_color"
         android:gravity="center"
-        android:padding="5dp">
 
+        android:padding="5dp">
+        <android.support.v7.widget.RecyclerView
+            android:id="@+id/rcyclr_latest"
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+            android:visibility="visible"
+            ></android.support.v7.widget.RecyclerView>
         <ListView
             android:id="@+id/lsv_latest"
             android:layout_width="fill_parent"
             android:layout_height="fill_parent"
             android:cacheColorHint="#00000000"
             android:divider="@null"
-            android:dividerHeight="1dp">
+            android:dividerHeight="1dp"
+            android:visibility="gone">
         </ListView>
 
         <ProgressBar

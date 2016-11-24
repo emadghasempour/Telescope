@@ -69,7 +69,7 @@ public class AdapterCategory extends ArrayAdapter<ItemCategory> {
         Picasso.with(getContext()).load(Config.SERVER_URL + "/upload/category/" +
                 object.getCategoryImageurl()).placeholder(R.drawable.ic_thumbnail).into(holder.image);
        // Bitmap photo= BitmapFactory.decodeResource(activity.getResources(),holder.im)
-        holder.parent.setBackgroundColor(Color.parseColor(color[position]));
+        //holder.parent.setBackgroundColor(Color.parseColor(color[position]));
 
         return view;
 

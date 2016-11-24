@@ -5,6 +5,7 @@ import android.os.Bundle;
 import android.os.PersistableBundle;
 import android.support.design.widget.FloatingActionButton;
 import android.support.v7.app.AppCompatActivity;
+import android.support.v7.widget.GridLayoutManager;
 import android.support.v7.widget.RecyclerView;
 import android.support.v7.widget.StaggeredGridLayoutManager;
 import android.util.Log;
@@ -31,14 +32,24 @@ public class CommentsActivity extends AppCompatActivity {
     public void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.comments_list_layout);
-
         findViews();
     }
     private void findViews(){
         fab= (FloatingActionButton) findViewById(R.id.comments_fab_add);
         commentsRecycler= (RecyclerView) findViewById(R.id.comments_recycler);
-        StaggeredGridLayoutManager mStaggeredLayoutManager = new StaggeredGridLayoutManager(1, StaggeredGridLayoutManager.VERTICAL);
-        commentsRecycler.setLayoutManager(mStaggeredLayoutManager);
+        //StaggeredGridLayoutManager mStaggeredLayoutManager = new StaggeredGridLayoutManager(1, StaggeredGridLayoutManager.VERTICAL);
+        int columns=getResources().getInteger(R.integer.latest_column_count);
+        GridLayoutManager gridLayoutManager=new GridLayoutManager(this,columns);
+        /*gridLayoutManager.setSpanSizeLookup(new GridLayoutManager.SpanSizeLookup() {
+            @Override
+            public int getSpanSize(int position) {
+                if(position/2==1)
+                return (2);
+                else return 1;
+            }
+        });*/
+
+        commentsRecycler.setLayoutManager(gridLayoutManager);
         APIs apIs= Network.getRetrofit().create(APIs.class);
         Call<TelescopeComment> call =apIs.loadPostComments("21");
 
@@ -48,6 +59,7 @@ public class CommentsActivity extends AppCompatActivity {
                 Log.d(TAG,"SUCCESS "+response.body().comments.size());
                 if (response.body() != null) {
                     commentsRecycler.setAdapter(new CommentAdapter(response.body().comments, CommentsActivity.this));
+
                 }
             }
 

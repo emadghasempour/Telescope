@@ -1,10 +1,8 @@
 package com.negah.telescope.app.services.api;
 
-import com.negah.telescope.app.models.Category;
 import com.negah.telescope.app.models.PostDetail;
 import com.negah.telescope.app.services.lists.TelescopeCategories;
 import com.negah.telescope.app.services.lists.TelescopeComment;
-import com.negah.telescope.app.services.lists.TelescopePostDetails;
 import com.negah.telescope.app.services.lists.TelescopeRecent;
 
 import retrofit2.Call;

@@ -7,10 +7,9 @@ import android.view.View;
 import android.view.ViewGroup;
 import android.widget.ImageView;
 import android.widget.RelativeLayout;
-import android.widget.TextView;
 
 import com.negah.telescope.app.R;
-import com.negah.telescope.app.models.Category;
+import com.negah.telescope.app.models.Banner;
 import com.negah.telescope.app.view.CustomFontTextView;
 import com.squareup.picasso.Picasso;
 
@@ -22,9 +21,9 @@ import java.util.List;
 public class BannerCategoriesAdapter extends RecyclerView.Adapter<BannerCategoriesAdapter.BannerCategoryViewHolder> {
     OnItemClickListener mItemClickListener;
     Context mContext;
-    List<Category> items;
+    List<Banner> items;
 
-    public BannerCategoriesAdapter(List<Category> items, Context mContext) {
+    public BannerCategoriesAdapter(List<Banner> items, Context mContext) {
         this.items = items;
         this.mContext = mContext;
     }

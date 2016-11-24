@@ -152,7 +152,9 @@ public class FragmentNewsCategory extends Fragment {
             @Override
             public void onResponse(Call<TelescopeCategories> call, Response<TelescopeCategories> response) {
                 Log.d("","" + response.body().categories.size());
-                bannerRecyclerView.setAdapter(new BannerCategoriesAdapter(response.body().categories,getContext()));
+               BannerCategoriesAdapter bannersadapter= new BannerCategoriesAdapter(response.body().categories,getContext());
+                bannerRecyclerView.setAdapter(bannersadapter);
+
 
             }
 

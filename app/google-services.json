@@ -1,27 +1,33 @@
 {
   "project_info": {
-    "project_number": "490764595456",
-    "firebase_url": "https://review-932b2.firebaseio.com",
-    "project_id": "review-932b2",
-    "storage_bucket": "review-932b2.appspot.com"
+    "project_number": "558377047142",
+    "project_id": "firebase-telescopeapp"
   },
   "client": [
     {
       "client_info": {
-        "mobilesdk_app_id": "1:490764595456:android:a7a2194aa5b102ef",
+        "mobilesdk_app_id": "1:558377047142:android:a7a2194aa5b102ef",
         "android_client_info": {
           "package_name": "com.negah.telescope.app"
         }
       },
       "oauth_client": [
         {
-          "client_id": "490764595456-rsv2mrdts2k581bt7d716o513f0osmsl.apps.googleusercontent.com",
+          "client_id": "558377047142-rrehch4evvgde360ab3kj0j8iu7u37b5.apps.googleusercontent.com",
+          "client_type": 1,
+          "android_info": {
+            "package_name": "com.negah.telescope.app",
+            "certificate_hash": "775AD701E5679DD017D47068A4701413BBB5E18C"
+          }
+        },
+        {
+          "client_id": "558377047142-s4ltr011k0dlakbj4drrv4ch4mo0japn.apps.googleusercontent.com",
           "client_type": 3
         }
       ],
       "api_key": [
         {
-          "current_key": "AIzaSyDRnRf7Yq8Jv2jAYoCoDOVhEAxAZ4B0WVc"
+          "current_key": "AIzaSyAGpJ42j2roaf4dtUjMA1hTtpNKUlzYfQw"
         }
       ],
       "services": {
@@ -33,7 +39,7 @@
           "other_platform_oauth_client": []
         },
         "ads_service": {
-          "status": 2
+          "status": 1
         }
       }
     }

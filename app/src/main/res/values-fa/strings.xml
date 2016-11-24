@@ -1,0 +1,8 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+    <string name="showRatePanel">امتیاز خود را ثبت کنید</string>
+    <string name="type_your_commnet">نظر شما ...</string>
+    <string name="signinwithgoogle">با اکانت گوگل وارد شوید</string>
+    <string name="or">یا</string>
+
+</resources>

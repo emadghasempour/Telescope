@@ -2,4 +2,6 @@
 <resources>
     <integer name="font_size">16</integer>
     <integer name="max_comment_lenght">180</integer>
+    <integer name="latest_column_count">1</integer>
+
 </resources>

@@ -6,7 +6,7 @@ import com.google.gson.annotations.Expose;
 import com.google.gson.annotations.SerializedName;
 
 
-public class Category {
+public class Banner {
 
     @SerializedName("catID")
     @Expose

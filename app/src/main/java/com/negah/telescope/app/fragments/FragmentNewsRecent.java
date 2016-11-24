@@ -8,7 +8,10 @@ import android.os.Handler;
 import android.support.annotation.Nullable;
 import android.support.v4.app.Fragment;
 import android.support.v4.view.MenuItemCompat;
+import android.support.v4.view.ViewPager;
 import android.support.v4.widget.SwipeRefreshLayout;
+import android.support.v7.widget.GridLayoutManager;
+import android.support.v7.widget.RecyclerView;
 import android.support.v7.widget.SearchView;
 import android.util.Log;
 import android.view.LayoutInflater;
@@ -30,13 +33,19 @@ import com.negah.telescope.app.activities.ActivityNewsDetail;
 import com.negah.telescope.app.activities.ActivitySplash;
 import com.negah.telescope.app.activities.DetailActivity;
 import com.negah.telescope.app.activities.PostActivity;
+import com.negah.telescope.app.adapters.AdFragmentPagerAdapter;
 import com.negah.telescope.app.adapters.AdapterRecent;
+import com.negah.telescope.app.adapters.BannerCategoriesAdapter;
+import com.negah.telescope.app.adapters.CommentAdapter;
+import com.negah.telescope.app.adapters.RecentPostAdapter;
 import com.negah.telescope.app.json.JsonConfig;
 import com.negah.telescope.app.json.JsonUtils;
 import com.negah.telescope.app.models.ItemRecent;
 import com.negah.telescope.app.models.PostDetail;
+import com.negah.telescope.app.services.Network;
 import com.negah.telescope.app.services.api.APIs;
 import com.negah.telescope.app.services.lists.TelescopeCategories;
+import com.negah.telescope.app.services.lists.TelescopeComment;
 import com.negah.telescope.app.services.lists.TelescopePostDetails;
 import com.negah.telescope.app.services.lists.TelescopeRecent;
 
@@ -56,7 +65,9 @@ import retrofit2.converter.gson.GsonConverterFactory;
 public class FragmentNewsRecent extends Fragment {
 
     ListView listView;
+    ViewPager adViewPager;
     List<ItemRecent> list;
+    RecyclerView recyclerView;
     AdapterRecent adapter;
     ArrayList<String> array_news, array_news_cat_name, array_cid, array_cat_id, array_cat_name, array_title, array_image, array_desc, array_date;
     String[] str_news, str_news_cat_name, str_cid, str_cat_id, str_cat_name, str_title, str_image, str_desc, str_date;
@@ -70,10 +81,14 @@ public class FragmentNewsRecent extends Fragment {
     @Nullable
     @Override
     public View onCreateView(LayoutInflater inflater, ViewGroup container, Bundle savedInstanceState) {
-        View v = inflater.inflate(R.layout.fragment_news_recent, container, false);
+        View v = inflater.inflate(R.layout.fragment_recent, container, false);
         setHasOptionsMenu(true);
-
+        adViewPager= (ViewPager) v.findViewById(R.id.topad_viewpager);
         listView = (ListView) v.findViewById(R.id.lsv_latest);
+        recyclerView= (RecyclerView) v.findViewById(R.id.rcyclr_latest);
+        int columns=getContext().getResources().getInteger(R.integer.latest_column_count);
+        GridLayoutManager gridLayoutManager=new GridLayoutManager(getContext(),columns);
+        recyclerView.setLayoutManager(gridLayoutManager);
         progressBar = (ProgressBar) v.findViewById(R.id.progressBar);
         swipeRefreshLayout = (SwipeRefreshLayout) v.findViewById(R.id.swipeRefreshLayout);
         swipeRefreshLayout.setColorSchemeResources(R.color.orange, R.color.green, R.color.blue, R.color.red);
@@ -142,22 +157,22 @@ public class FragmentNewsRecent extends Fragment {
             }
         });
 
-       /* listView.setOnItemClickListener(new AdapterView.OnItemClickListener() {
+        listView.setOnItemClickListener(new AdapterView.OnItemClickListener() {
 
             @Override
             public void onItemClick(AdapterView<?> arg0, View arg1, int position, long arg3) {
 
-               *//* object = list.get(position);
+                /*object = list.get(position);
                 int pos = Integer.parseInt(object.getCatId());
 
                 Intent intplay = new Intent(getActivity(), ActivityNewsDetail.class);
                 intplay.putExtra("POSITION", pos);
-                JsonConfig.NEWS_ITEMID = object.getCatId();*//*
-                Intent intplay = new Intent(getActivity(), PostActivity.class);
+                JsonConfig.NEWS_ITEMID = object.getCatId();
+               // Intent intplay = new Intent(getActivity(), PostActivity.class);
                 Log.d("position1","detailed");
-                startActivity(intplay);
+                startActivity(intplay);*/
             }
-        });*/
+        });
         listView.setOnItemClickListener(new AdapterView.OnItemClickListener() {
             @Override
             public void onItemClick(AdapterView<?> adapterView, View view, int i, long l) {
@@ -166,12 +181,43 @@ public class FragmentNewsRecent extends Fragment {
             }
         });
 
-        Retrofit retrofit=new Retrofit.Builder()
+        APIs apIs= Network.getRetrofit().create(APIs.class);
+        Call<TelescopeCategories> call =apIs.loadCategories();
+        call.enqueue(new Callback<TelescopeCategories>() {
+            @Override
+            public void onResponse(Call<TelescopeCategories> call, Response<TelescopeCategories> response) {
+                Log.d(TAG,"" + response.body().categories.size());
+                AdFragmentPagerAdapter pagerAdapter=new AdFragmentPagerAdapter(getActivity().getSupportFragmentManager()
+                        ,response.body().categories);
+                adViewPager.setAdapter(pagerAdapter);
+
+            }
+
+            @Override
+            public void onFailure(Call<TelescopeCategories> call, Throwable t) {
+                Log.d(TAG,"FAILED");
+            }
+        });
+
+        Call<TelescopeRecent> calllatest =apIs.loadRecent();
+        calllatest.enqueue(new Callback<TelescopeRecent>() {
+            @Override
+            public void onResponse(Call<TelescopeRecent> call, Response<TelescopeRecent> response) {
+                recyclerView.setAdapter(new RecentPostAdapter(response.body().items,getContext()));
+            }
+
+            @Override
+            public void onFailure(Call<TelescopeRecent> call, Throwable t) {
+
+            }
+        });
+
+       /* Retrofit retrofit=new Retrofit.Builder()
                 .baseUrl("http://www.negahgames.com")
                 .addConverterFactory(GsonConverterFactory.create())
                 .build();
         APIs apIs=retrofit.create(APIs.class);
-        Call<PostDetail> call =apIs.loadPostDetails("12");
+        Call<PostDetail> call =apIs.loadPostDetails("12");*/
         /*Call<TelescopeRecent> call=apIs.loadRecent();
         call.enqueue(new Callback<TelescopeRecent>() {
             @Override
