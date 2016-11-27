@@ -1,7 +1,8 @@
 package com.negah.telescope.app.services.api;
 
 import com.negah.telescope.app.models.PostDetail;
-import com.negah.telescope.app.services.lists.TelescopeCategories;
+import com.negah.telescope.app.services.lists.TelescopeBanner;
+import com.negah.telescope.app.services.lists.TelescopeCategory;
 import com.negah.telescope.app.services.lists.TelescopeComment;
 import com.negah.telescope.app.services.lists.TelescopeRecent;
 
@@ -16,12 +17,15 @@ public interface APIs {
     @GET("/ghazalservice/getData/getData.php?request=getRecentPosts")
     Call<TelescopeRecent> loadRecent();
 
-    @GET("/ghazalservice/getData/getData.php?request=getCategories")
-    Call<TelescopeCategories> loadCategories();
+    @GET("/ghazalservice/getData/getData.php?request=getFullBanners")
+    Call<TelescopeBanner> loadFullBanners();
 
     @GET("/ghazalservice/getData/getData.php?request=getPostDetails")
     Call<PostDetail> loadPostDetails(@Query("postID") String ID);
 
     @GET("/ghazalservice/getData/getData.php?request=getcomments")
     Call<TelescopeComment> loadPostComments(@Query("postid")String id);
+
+    @GET("/ghazalservice/getData/getData.php?request=getCategories")
+    Call<TelescopeCategory> loadCategories();
 }

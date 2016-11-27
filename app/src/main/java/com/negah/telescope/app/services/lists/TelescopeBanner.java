@@ -7,6 +7,6 @@ import java.util.List;
 /**
  * Created by emad on 11/14/2016.
  */
-public class TelescopeCategories {
-    public List<Banner> categories;
+public class TelescopeBanner {
+    public List<Banner> banners;
 }

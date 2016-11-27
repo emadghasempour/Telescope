@@ -26,6 +26,17 @@ public class Banner {
     @SerializedName("bannerpath")
     @Expose
     private String bannerpath;
+    @SerializedName("row")
+    @Expose
+    private Integer row;
+
+    public Integer getRow() {
+        return row;
+    }
+
+    public void setRow(Integer row) {
+        this.row = row;
+    }
 
     /**
      * 

@@ -24,7 +24,7 @@
             app:expandedTitleMarginStart="48dp"
 
 
-            app:layout_scrollFlags="scroll|enterAlways">
+            app:layout_scrollFlags="scroll|snap">
             <android.support.v4.view.ViewPager
                 android:id="@+id/topad_viewpager"
                 android:layout_width="match_parent"

@@ -51,6 +51,19 @@ public class PostDetail {
     @SerializedName("postType")
     @Expose
     private Integer postType;
+    @SerializedName("writer")
+    @Expose
+    private String writer;
+    @SerializedName("imagePath")
+    @Expose
+    private String imagePath;
+    @SerializedName("speciality")
+    @Expose
+    private Integer speciality;
+    @SerializedName("visitcount")
+    @Expose
+    private String visitcount;
+
 
     /**
      * 
@@ -305,8 +318,45 @@ public class PostDetail {
     }
 
 
+
     @Override
     public String toString() {
         return vendor;
+    }
+
+    public void setImagePath(String imagePath) {
+        this.imagePath = imagePath;
+    }
+
+
+
+    public void setSpeciality(Integer speciality) {
+        this.speciality = speciality;
+    }
+
+    public void setVisitcount(String visitcount) {
+        this.visitcount = visitcount;
+    }
+
+    public void setWriter(String writer) {
+        this.writer = writer;
+    }
+
+    public String getImagePath() {
+        return imagePath;
+    }
+
+
+
+    public Integer getSpeciality() {
+        return speciality;
+    }
+
+    public String getVisitcount() {
+        return visitcount;
+    }
+
+    public String getWriter() {
+        return writer;
     }
 }

@@ -9,6 +9,7 @@ import android.support.annotation.Nullable;
 import android.support.v4.app.Fragment;
 import android.support.v4.view.MenuItemCompat;
 import android.support.v4.widget.SwipeRefreshLayout;
+import android.support.v7.widget.GridLayoutManager;
 import android.support.v7.widget.RecyclerView;
 import android.support.v7.widget.SearchView;
 import android.support.v7.widget.StaggeredGridLayoutManager;
@@ -28,17 +29,17 @@ import android.widget.Toast;
 
 import com.negah.telescope.app.Config;
 import com.negah.telescope.app.R;
-import com.negah.telescope.app.activities.ActivityNewsListByCategory;
 import com.negah.telescope.app.activities.DetailActivity;
-import com.negah.telescope.app.adapters.AdapterCategory;
+import com.negah.telescope.app.adapters.AdapterFullBannerList;
 import com.negah.telescope.app.adapters.BannerCategoriesAdapter;
+import com.negah.telescope.app.adapters.CategoryAdapter;
 import com.negah.telescope.app.json.JsonConfig;
 import com.negah.telescope.app.json.JsonUtils;
 import com.negah.telescope.app.models.ItemCategory;
-import com.negah.telescope.app.models.PostDetail;
 import com.negah.telescope.app.services.Network;
 import com.negah.telescope.app.services.api.APIs;
-import com.negah.telescope.app.services.lists.TelescopeCategories;
+import com.negah.telescope.app.services.lists.TelescopeBanner;
+import com.negah.telescope.app.services.lists.TelescopeCategory;
 
 import org.json.JSONArray;
 import org.json.JSONException;
@@ -55,16 +56,17 @@ public class FragmentNewsCategory extends Fragment {
 
     GridView gridview;
     List<ItemCategory> list;
-    AdapterCategory adapter;
+    AdapterFullBannerList adapter;
     private ItemCategory object;
     ArrayList<String> array_cat_id, array_cat_name, array_cat_image;
     String[] str_cat_id, str_cat_name, str_cat_image;
     int textlength = 0;
     SwipeRefreshLayout swipeRefreshLayout = null;
     ProgressBar progressBar;
-    RecyclerView bannerRecyclerView;
+    RecyclerView bannerRecyclerView,categoriesRecyclerView;
+    CategoryAdapter categoryAdapter;
     //private InterstitialAd interstitial;
-
+    String TAG= FragmentNewsCategory.class.getSimpleName();
     @Nullable
     @Override
     public View onCreateView(LayoutInflater inflater, ViewGroup container, Bundle savedInstanceState) {
@@ -86,8 +88,36 @@ public class FragmentNewsCategory extends Fragment {
         str_cat_name = new String[array_cat_image.size()];
         str_cat_image = new String[array_cat_name.size()];
 
+        bannerRecyclerView= (RecyclerView) v.findViewById(R.id.categories_bannerList);
+        StaggeredGridLayoutManager mStaggeredLayoutManager = new StaggeredGridLayoutManager(1, StaggeredGridLayoutManager.VERTICAL);
+        categoriesRecyclerView= (RecyclerView) v.findViewById(R.id.categories_list);
+        GridLayoutManager gridLayoutManager=new GridLayoutManager(getContext(),2);
+        categoriesRecyclerView.setLayoutManager(gridLayoutManager);
+        bannerRecyclerView.setLayoutManager(mStaggeredLayoutManager);
+        APIs apIs=Network.getRetrofit().create(APIs.class);
+        Call<TelescopeCategory> categoriesRequest =apIs.loadCategories();
+        categoriesRequest.enqueue(new Callback<TelescopeCategory>() {
+            @Override
+            public void onResponse(Call<TelescopeCategory> call, Response<TelescopeCategory> response) {
+                Log.d(TAG,"categories " + response.body().categories.size());
+                categoryAdapter=new CategoryAdapter(getContext(),response.body().categories);
+                categoryAdapter.setOnItemClickListener(new CategoryAdapter.OnItemClickListener() {
+                    @Override
+                    public void onItemClick(View view, int position) {
+
+                    }
+                });
+                categoriesRecyclerView.setAdapter(categoryAdapter);
+            }
+
+            @Override
+            public void onFailure(Call<TelescopeCategory> call, Throwable t) {
+                Log.d(TAG,"categories " + t.getLocalizedMessage());
+            }
+        });
+
         if (JsonUtils.isNetworkAvailable(getActivity())) {
-            new MyTask().execute(Config.SERVER_URL + "/api.php");
+          //  new MyTask().execute(Config.SERVER_URL + "/api.php");
         } else {
             Toast.makeText(getActivity(), getResources().getString(R.string.failed_connect_network), Toast.LENGTH_SHORT).show();
         }
@@ -143,23 +173,22 @@ public class FragmentNewsCategory extends Fragment {
 
             }
         });
-        bannerRecyclerView= (RecyclerView) v.findViewById(R.id.categories_bannerList);
-        StaggeredGridLayoutManager mStaggeredLayoutManager = new StaggeredGridLayoutManager(1, StaggeredGridLayoutManager.VERTICAL);
-        bannerRecyclerView.setLayoutManager(mStaggeredLayoutManager);
-        APIs apIs=Network.getRetrofit().create(APIs.class);
-        Call<TelescopeCategories> call =apIs.loadCategories();
-        call.enqueue(new Callback<TelescopeCategories>() {
+
+
+
+        Call<TelescopeBanner> call =apIs.loadFullBanners();
+        call.enqueue(new Callback<TelescopeBanner>() {
             @Override
-            public void onResponse(Call<TelescopeCategories> call, Response<TelescopeCategories> response) {
-                Log.d("","" + response.body().categories.size());
-               BannerCategoriesAdapter bannersadapter= new BannerCategoriesAdapter(response.body().categories,getContext());
+            public void onResponse(Call<TelescopeBanner> call, Response<TelescopeBanner> response) {
+                Log.d(TAG,"SIZE " + response.body().banners.size());
+               BannerCategoriesAdapter bannersadapter= new BannerCategoriesAdapter(response.body().banners,getContext());
                 bannerRecyclerView.setAdapter(bannersadapter);
 
 
             }
 
             @Override
-            public void onFailure(Call<TelescopeCategories> call, Throwable t) {
+            public void onFailure(Call<TelescopeBanner> call, Throwable t) {
 
             }
         });
@@ -298,7 +327,7 @@ public class FragmentNewsCategory extends Fragment {
 
 
     public void setAdapterToListView() {
-        adapter = new AdapterCategory(getActivity(), R.layout.lsv_item_category, list);
+        adapter = new AdapterFullBannerList(getActivity(), R.layout.lsv_item_category, list);
         gridview.setAdapter(adapter);
     }
 

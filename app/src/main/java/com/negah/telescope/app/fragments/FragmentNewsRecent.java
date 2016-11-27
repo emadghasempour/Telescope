@@ -29,24 +29,16 @@ import android.widget.Toast;
 
 import com.negah.telescope.app.Config;
 import com.negah.telescope.app.R;
-import com.negah.telescope.app.activities.ActivityNewsDetail;
 import com.negah.telescope.app.activities.ActivitySplash;
-import com.negah.telescope.app.activities.DetailActivity;
-import com.negah.telescope.app.activities.PostActivity;
 import com.negah.telescope.app.adapters.AdFragmentPagerAdapter;
 import com.negah.telescope.app.adapters.AdapterRecent;
-import com.negah.telescope.app.adapters.BannerCategoriesAdapter;
-import com.negah.telescope.app.adapters.CommentAdapter;
 import com.negah.telescope.app.adapters.RecentPostAdapter;
 import com.negah.telescope.app.json.JsonConfig;
 import com.negah.telescope.app.json.JsonUtils;
 import com.negah.telescope.app.models.ItemRecent;
-import com.negah.telescope.app.models.PostDetail;
 import com.negah.telescope.app.services.Network;
 import com.negah.telescope.app.services.api.APIs;
-import com.negah.telescope.app.services.lists.TelescopeCategories;
-import com.negah.telescope.app.services.lists.TelescopeComment;
-import com.negah.telescope.app.services.lists.TelescopePostDetails;
+import com.negah.telescope.app.services.lists.TelescopeBanner;
 import com.negah.telescope.app.services.lists.TelescopeRecent;
 
 import org.json.JSONArray;
@@ -59,8 +51,6 @@ import java.util.List;
 import retrofit2.Call;
 import retrofit2.Callback;
 import retrofit2.Response;
-import retrofit2.Retrofit;
-import retrofit2.converter.gson.GsonConverterFactory;
 
 public class FragmentNewsRecent extends Fragment {
 
@@ -78,6 +68,8 @@ public class FragmentNewsRecent extends Fragment {
     ProgressBar progressBar;
     //private InterstitialAd interstitial;
     String TAG=FragmentNewsRecent.class.getSimpleName();
+    private RecentPostAdapter recentAdapter;
+
     @Nullable
     @Override
     public View onCreateView(LayoutInflater inflater, ViewGroup container, Bundle savedInstanceState) {
@@ -89,6 +81,7 @@ public class FragmentNewsRecent extends Fragment {
         int columns=getContext().getResources().getInteger(R.integer.latest_column_count);
         GridLayoutManager gridLayoutManager=new GridLayoutManager(getContext(),columns);
         recyclerView.setLayoutManager(gridLayoutManager);
+
         progressBar = (ProgressBar) v.findViewById(R.id.progressBar);
         swipeRefreshLayout = (SwipeRefreshLayout) v.findViewById(R.id.swipeRefreshLayout);
         swipeRefreshLayout.setColorSchemeResources(R.color.orange, R.color.green, R.color.blue, R.color.red);
@@ -181,34 +174,44 @@ public class FragmentNewsRecent extends Fragment {
             }
         });
 
+
+
         APIs apIs= Network.getRetrofit().create(APIs.class);
-        Call<TelescopeCategories> call =apIs.loadCategories();
-        call.enqueue(new Callback<TelescopeCategories>() {
+        Call<TelescopeBanner> call =apIs.loadFullBanners();
+        /*call.enqueue(new Callback<TelescopeBanner>() {
             @Override
-            public void onResponse(Call<TelescopeCategories> call, Response<TelescopeCategories> response) {
-                Log.d(TAG,"" + response.body().categories.size());
+            public void onResponse(Call<TelescopeBanner> call, Response<TelescopeBanner> response) {
+                Log.d(TAG,"" + response.body().banners.size());
                 AdFragmentPagerAdapter pagerAdapter=new AdFragmentPagerAdapter(getActivity().getSupportFragmentManager()
-                        ,response.body().categories);
+                        ,response.body().banners);
                 adViewPager.setAdapter(pagerAdapter);
 
             }
 
             @Override
-            public void onFailure(Call<TelescopeCategories> call, Throwable t) {
+            public void onFailure(Call<TelescopeBanner> call, Throwable t) {
                 Log.d(TAG,"FAILED");
             }
-        });
+        });*/
 
         Call<TelescopeRecent> calllatest =apIs.loadRecent();
         calllatest.enqueue(new Callback<TelescopeRecent>() {
             @Override
             public void onResponse(Call<TelescopeRecent> call, Response<TelescopeRecent> response) {
-                recyclerView.setAdapter(new RecentPostAdapter(response.body().items,getContext()));
+                recentAdapter=new RecentPostAdapter(response.body().items,getContext());
+                recentAdapter.setOnItemClickListener(new RecentPostAdapter.OnItemClickListener() {
+                    @Override
+                    public void onItemClick(View view, int position) {
+                        Intent i2=new Intent(getActivity(),ActivitySplash.class);
+                        getActivity().startActivity(i2);
+                    }
+                });
+                recyclerView.setAdapter(recentAdapter);
             }
 
             @Override
             public void onFailure(Call<TelescopeRecent> call, Throwable t) {
-
+                Log.e(TAG,"FAILED"+t.getLocalizedMessage());
             }
         });
 
@@ -231,16 +234,16 @@ public class FragmentNewsRecent extends Fragment {
                 Log.d(TAG+"fail",t.getLocalizedMessage());
             }
         });*/
-        /*call.enqueue(new Callback<TelescopeCategories>() {
+        /*call.enqueue(new Callback<TelescopeBanner>() {
             @Override
-            public void onResponse(Call<TelescopeCategories> call, Response<TelescopeCategories> response) {
-                Log.d(TAG,"" + response.body().categories.size());
-                Log.d(TAG,""+response.body().categories.toString());
+            public void onResponse(Call<TelescopeBanner> call, Response<TelescopeBanner> response) {
+                Log.d(TAG,"" + response.body().banners.size());
+                Log.d(TAG,""+response.body().banners.toString());
 
             }
 
             @Override
-            public void onFailure(Call<TelescopeCategories> call, Throwable t) {
+            public void onFailure(Call<TelescopeBanner> call, Throwable t) {
 
             }
         });*/

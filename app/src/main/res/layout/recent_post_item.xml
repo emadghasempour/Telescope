@@ -1,71 +1,56 @@
 <?xml version="1.0" encoding="utf-8"?>
- <android.support.v7.widget.CardView
-        xmlns:android="http://schemas.android.com/apk/res/android"
-        xmlns:app="http://schemas.android.com/apk/res-auto"
+<android.support.v7.widget.CardView
+    xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:post="http://schemas.android.com/apk/res-auto"
+    android:layout_width="match_parent"
+    android:layout_height="270dp"
+    post:cardElevation="4dp"
+    android:layout_margin="10dp"
+    android:foreground="?android:attr/selectableItemBackground"
+    android:background="?android:selectableItemBackground"
+    android:id="@+id/recent_post_parent"
+    >
+    <RelativeLayout
         android:layout_width="match_parent"
-        android:layout_height="270dp"
-        app:cardElevation="4dp"
-        android:layout_margin="10dp"
-        android:background="?android:selectableItemBackground"
+        android:layout_height="match_parent"
         >
-        <RelativeLayout
+        <ImageView
+            android:id="@+id/recent_post_background"
             android:layout_width="match_parent"
             android:layout_height="match_parent"
+            android:layout_centerVertical="true"
+            android:layout_alignParentRight="true"
+            android:scaleType="fitXY"
+            android:src="@drawable/google2"
+            android:translationZ="10dp"
+            />
 
-            >
-            <ImageView
-                android:id="@+id/recent_post_icon"
-                android:layout_width="96dp"
-                android:layout_height="96dp"
-                android:layout_centerVertical="true"
-                android:layout_alignParentRight="true"
-                android:src="@mipmap/icon"
-                android:scaleType="fitCenter"
-                android:layout_margin="20dp"
-                android:translationZ="10dp"
 
-                />
+        <View
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+            android:background="@color/black_lowOP"
+            ></View>
 
-            <com.negah.telescope.app.view.CustomFontTextView
-                android:id="@+id/recent_post_appname"
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:text="AppName"
-                android:layout_marginTop="40dp"
-                android:layout_toLeftOf="@+id/recent_post_icon"
-                />
-            <com.negah.telescope.app.view.CustomFontTextView
-                android:id="@+id/recent_post_vendor"
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:text="Vendor"
-                android:layout_marginTop="5dp"
-                android:layout_below="@id/recent_post_appname"
-                android:layout_toLeftOf="@+id/recent_post_icon"
-                />
-            <com.negah.telescope.app.view.CustomFontTextView
-                android:id="@+id/recent_post_title"
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:layout_centerVertical="true"
-                android:layout_toLeftOf="@id/recent_post_icon"
-                android:text="title"
+       <com.negah.telescope.app.view.CustomFontTextView
+           android:id="@+id/recent_post_date"
+           android:layout_width="wrap_content"
+           android:layout_height="wrap_content"
+           android:text="hello"
+           android:textColor="@color/background_color"
+           android:layout_margin="10dp"
+           />
+        <com.negah.telescope.app.view.CustomFontTextView
+            android:id="@+id/recent_post_title"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_centerVertical="true"
+            android:layout_centerInParent="true"
+            android:text="hello"
+            android:textColor="@color/background_color"
 
-                />
-            <com.negah.telescope.app.view.CustomFontTextView
-                android:id="@+id/recent_post_date"
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:text="1395/8/26"
-                android:layout_margin="10dp"
-                />
-            <RelativeLayout
-                android:id="@+id/rate_panel"
-                android:layout_width="match_parent"
-                android:layout_height="60dp"
-                android:layout_alignParentBottom="true"
-                android:background="@color/black_lowOP"
+            />
 
-                ></RelativeLayout>
-        </RelativeLayout>
-    </android.support.v7.widget.CardView>
+    </RelativeLayout>
+
+</android.support.v7.widget.CardView>

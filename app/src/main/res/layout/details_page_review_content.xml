@@ -5,17 +5,32 @@
     android:layout_width="match_parent"
     android:layout_height="match_parent">
     <android.support.v7.widget.CardView
+        android:id="@+id/desc_shortdesc_panel"
+        android:layout_width="match_parent"
+        android:layout_height="180dp"
+
+        ></android.support.v7.widget.CardView>
+    <android.support.v7.widget.CardView
         android:id="@+id/desc_scrnshotpanel"
         android:layout_width="match_parent"
         android:layout_height="180dp"
+        android:layout_below="@+id/desc_shortdesc_panel"
+        android:layout_marginTop="5dp"
+
         >
+        <android.support.v7.widget.RecyclerView
+            android:id="@+id/desc_screenshots_recyclerview"
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+            android:layout_margin="10dp"
+            ></android.support.v7.widget.RecyclerView>
     </android.support.v7.widget.CardView>
     <android.support.v7.widget.CardView
         android:id="@+id/desc_fullreview"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:layout_below="@+id/desc_scrnshotpanel"
-        android:layout_marginTop="10dp"
+        android:layout_marginTop="5dp"
         app:cardElevation="3dp"
         >
         <RelativeLayout
@@ -33,7 +48,7 @@
         android:layout_width="match_parent"
         android:layout_height="100dp"
         android:layout_below="@+id/desc_fullreview"
-        android:layout_marginTop="10dp"
+        android:layout_marginTop="5dp"
         app:cardElevation="3dp"
         ></android.support.v7.widget.CardView>
 

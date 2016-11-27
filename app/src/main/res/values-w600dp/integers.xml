@@ -2,4 +2,5 @@
 <resources>
     <integer name="font_size">22</integer>
     <integer name="latest_column_count">2</integer>
+    <integer name="categories_column_count">4</integer>
 </resources>

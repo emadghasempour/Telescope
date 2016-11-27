@@ -33,7 +33,7 @@
                 app:is_oval="true"
                 app:round_background="true" />
 
-            <TextView
+            <com.negah.telescope.app.view.CustomFontTextView
                 android:id="@+id/category_title"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"

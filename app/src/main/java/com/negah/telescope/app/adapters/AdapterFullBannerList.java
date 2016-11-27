@@ -21,7 +21,7 @@ import com.squareup.picasso.Picasso;
 
 import java.util.List;
 
-public class AdapterCategory extends ArrayAdapter<ItemCategory> {
+public class AdapterFullBannerList extends ArrayAdapter<ItemCategory> {
 
     private Activity activity;
     private List<ItemCategory> item;
@@ -30,7 +30,7 @@ public class AdapterCategory extends ArrayAdapter<ItemCategory> {
     //public ImageLoader imageLoader;
     String[] color={"#E64A19","#512DA8","#E91E63","#FFC107","#00bcd4","#4caf50"};
 
-    public AdapterCategory(Activity act, int resource, List<ItemCategory> arrayList) {
+    public AdapterFullBannerList(Activity act, int resource, List<ItemCategory> arrayList) {
         super(act, resource, arrayList);
         this.activity = act;
         this.row = resource;
