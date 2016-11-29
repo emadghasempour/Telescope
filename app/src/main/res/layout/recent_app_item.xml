@@ -8,7 +8,7 @@
         android:layout_margin="10dp"
         android:background="?android:selectableItemBackground"
         android:id="@+id/recent_app_parent"
-    android:foreground="?android:attr/selectableItemBackground"
+         android:foreground="?android:attr/selectableItemBackground"
         >
         <RelativeLayout
             android:layout_width="match_parent"
@@ -19,13 +19,15 @@
                 android:id="@+id/recent_app_icon"
                 android:layout_width="96dp"
                 android:layout_height="96dp"
-                android:layout_centerVertical="true"
+
                 android:layout_alignParentRight="true"
                 android:src="@mipmap/icon"
                 android:scaleType="fitCenter"
-                android:layout_margin="20dp"
+                android:layout_marginTop="30dp"
                 android:translationZ="10dp"
-
+                android:layout_marginLeft="20dp"
+                android:layout_marginRight="20dp"
+                android:align="@id/recent_app_appname"
                 />
 
             <com.negah.telescope.app.view.CustomFontTextView
@@ -33,7 +35,7 @@
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:text="AppName"
-                android:layout_marginTop="40dp"
+                android:layout_marginTop="60dp"
                 android:layout_toLeftOf="@+id/recent_app_icon"
                 />
             <com.negah.telescope.app.view.CustomFontTextView
@@ -50,8 +52,11 @@
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:layout_centerVertical="true"
-                android:layout_toLeftOf="@id/recent_app_icon"
+                android:layout_below="@id/recent_app_icon"
+                android:layout_centerHorizontal="true"
+                android:layout_marginTop="20dp"
                 android:text="title"
+                android:textSize="20sp"
 
                 />
             <com.negah.telescope.app.view.CustomFontTextView
@@ -61,13 +66,44 @@
                 android:text="1395/8/26"
                 android:layout_margin="10dp"
                 />
+
             <RelativeLayout
                 android:id="@+id/rate_panel"
                 android:layout_width="match_parent"
                 android:layout_height="60dp"
                 android:layout_alignParentBottom="true"
-                android:background="@color/black_lowOP"
 
-                ></RelativeLayout>
+                android:visibility="visible"
+                >
+                <ImageView
+                    android:id="@+id/recent_app_userIcon"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:src="@drawable/ic_user"
+                    android:layout_centerVertical="true"
+                    android:layout_alignParentRight="true"
+                    android:layout_marginRight="20dp"
+                    />
+                <com.negah.telescope.app.view.CustomFontTextView
+                    android:id="@+id/recent_app_userName"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:text="emad"
+                    android:layout_centerVertical="true"
+                    android:layout_toLeftOf="@id/recent_app_userIcon"
+                    android:layout_marginRight="5dp"
+                    android:textColor="@color/username_color"
+
+                    />
+                <com.negah.telescope.app.view.CustomFontTextView
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:text="8.3"
+                    android:layout_centerVertical="true"
+                    android:layout_marginLeft="20dp"
+                    android:textSize="25sp"
+
+                    />
+            </RelativeLayout>
         </RelativeLayout>
     </android.support.v7.widget.CardView>

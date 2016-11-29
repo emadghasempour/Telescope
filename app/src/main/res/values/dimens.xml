@@ -9,5 +9,10 @@
     <dimen name="card_corner_radius">3dp</dimen>
     <dimen name="poetitem_height">170dp</dimen>
     <dimen name="fab_margin">16dp</dimen>
+    <dimen name="user_recen_margin">10dp</dimen>
 
+    <integer name="viewport_width">24</integer>
+    <integer name="viewport_height">24</integer>
+    <integer name="viewport_center_x">12</integer>
+    <integer name="viewport_center_y">12</integer>
 </resources>

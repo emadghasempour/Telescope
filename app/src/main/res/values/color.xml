@@ -25,5 +25,6 @@
     <color name="temp">#E64A19</color>
     <color name="temp2">#512DA8</color>
     <color name="edt_stroke">#8b8b8b</color>
+    <color name="username_color">#898989</color>
 
 </resources>
