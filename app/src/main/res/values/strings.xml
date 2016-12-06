@@ -94,6 +94,12 @@
     <string name="menu_fav">Add to Favorite</string>
 
     <string name="web_client_id">192102569298-7c7rs1vb63etaivart3rig6ht3hcudfd.apps.googleusercontent.com</string>
+    <string name="markets_link">markets</string>
 
+
+    <string name="type_your_commnet">your comment ...</string>
+    <string name="showRatePanel">submit your Rate</string>
+    <string name="submit_commnet">submit</string>
+    <string name="UILable">UI</string>
 
 </resources>

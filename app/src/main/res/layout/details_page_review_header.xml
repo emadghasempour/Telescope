@@ -1,22 +1,48 @@
-<RelativeLayout
-    xmlns:android="http://schemas.android.com/apk/res/android"
+<?xml version="1.0" encoding="utf-8"?>
+<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:app="http://schemas.android.com/apk/res-auto"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    app:layout_behavior="@string/appbar_scrolling_view_behavior"
-    android:fitsSystemWindows="true"
-    app:layout_collapseMode="pin"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_marginBottom="20dp"
 
-    >
+    tools:showIn="@layout/details_page">
+    <com.negah.telescope.app.view.CustomFontTextView
+
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:id="@+id/desc_app_date"
+        android:layout_alignParentLeft="true"
+        android:text="13/9/1395"
+        android:textSize="@dimen/text_size_small"
+        android:textColor="@color/username_color"
+        android:layout_margin="10dp"
+
+        />
+    <com.negah.telescope.app.view.CustomFontTextView
+        android:id="@+id/desc_app_title"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+
+        android:text="title"
+        android:layout_below="@id/desc_app_date"
+        android:textSize="@dimen/text_size_large"
+        android:layout_centerHorizontal="true"
+        android:textColor="@color/username_color"
+
+        />
     <ImageView
-        android:layout_width="50dp"
-        android:layout_height="50dp"
+        android:layout_width="96dp"
+        android:layout_height="96dp"
         android:src="@mipmap/ic_launcher"
-        android:layout_centerInParent="true"
+        android:layout_below="@id/desc_app_title"
+        android:scaleType="fitCenter"
+        android:layout_centerHorizontal="true"
+        android:layout_marginTop="10dp"
         android:transitionName="@string/shared_iconImage"
         android:id="@+id/desc_appiconImage"
         />
-    <TextView
+    <com.negah.telescope.app.view.CustomFontTextView
         android:id="@+id/desc_appname"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
@@ -26,9 +52,10 @@
         android:layout_marginLeft="50dp"
         android:layout_marginTop="10dp"
         android:layout_centerHorizontal="true"
-        android:textColor="@color/ColorPrimary"
+        android:textColor="@color/cardview_dark_background"
+        android:textSize="@dimen/detail_appname"
         />
-    <TextView
+    <com.negah.telescope.app.view.CustomFontTextView
         android:id="@+id/desc_appvendor"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
@@ -38,14 +65,15 @@
         android:layout_marginLeft="50dp"
         android:layout_marginTop="5dp"
         android:layout_centerHorizontal="true"
-        android:textColor="@color/ColorPrimary"
+        android:textColor="@color/text_color"
         />
     <TextView
-        android:id="@+id/desc_shortdesc"
+
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:layout_below="@+id/desc_appvendor"
         android:text="hello"
+        android:visibility="gone"
         android:gravity="center"
         android:layout_marginLeft="50dp"
         android:layout_marginTop="5dp"

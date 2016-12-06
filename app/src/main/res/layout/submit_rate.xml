@@ -1,0 +1,243 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:orientation="vertical" android:layout_width="match_parent"
+    android:layout_height="wrap_content"
+    android:layout_below="@+id/submit_comment_showrate_chb"
+    android:layout_marginTop="10dp"
+    tools:showIn="@layout/submit_comment_layout"
+    android:id="@+id/submit_rate_panel"
+    android:visibility="gone"
+    >
+<RelativeLayout
+    android:layout_width="match_parent"
+    android:layout_height="wrap_content"
+
+    >
+    <com.negah.telescope.app.view.CustomFontTextView
+        android:id="@+id/submitrate_rate1_title"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_alignParentRight="true"
+        android:text="@string/UILable"
+        android:textSize="@dimen/text_size_medium"
+
+        android:layout_marginRight="20dp"
+        />
+
+        <com.negah.telescope.app.view.CustomFontTextView
+            android:id="@+id/submitrate_rate1_ratetxt"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_alignParentLeft="true"
+            android:text="8"
+            android:textSize="@dimen/text_size_large"
+            android:layout_below="@id/submitrate_rate1_title"
+            android:layout_marginLeft="20dp"
+
+            android:textColor="@color/ratebar_color1"
+
+
+            />
+    <org.adw.library.widgets.discreteseekbar.DiscreteSeekBar
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        app:dsb_max="10"
+        app:dsb_min="0"
+        app:dsb_value="5"
+        app:dsb_progressColor="@color/ratebar_color1"
+        app:dsb_trackColor="@color/ratebar_color1"
+        app:dsb_indicatorColor="@color/ratebar_color1"
+        android:layout_below="@id/submitrate_rate1_title"
+        android:layout_alignParentRight="true"
+        android:layout_toRightOf="@id/submitrate_rate1_ratetxt"
+        android:layout_marginLeft="5dp"
+        android:layout_marginRight="10dp"
+        />
+</RelativeLayout>
+    <RelativeLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+
+        >
+        <com.negah.telescope.app.view.CustomFontTextView
+            android:id="@+id/submitrate_rate2_title"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_alignParentRight="true"
+            android:text="@string/UILable"
+            android:textSize="@dimen/text_size_medium"
+
+            android:layout_marginRight="20dp"
+            />
+
+        <com.negah.telescope.app.view.CustomFontTextView
+            android:id="@+id/submitrate_rate2_ratetxt"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_alignParentLeft="true"
+            android:text="8"
+            android:textSize="@dimen/text_size_large"
+            android:layout_below="@id/submitrate_rate2_title"
+            android:layout_marginLeft="20dp"
+
+            android:textColor="@color/ratebar_color2"
+
+
+            />
+        <org.adw.library.widgets.discreteseekbar.DiscreteSeekBar
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            app:dsb_max="10"
+            app:dsb_min="0"
+            app:dsb_value="5"
+            app:dsb_progressColor="@color/ratebar_color2"
+            app:dsb_trackColor="@color/ratebar_color2"
+            app:dsb_indicatorColor="@color/ratebar_color2"
+            android:layout_below="@id/submitrate_rate2_title"
+            android:layout_alignParentRight="true"
+            android:layout_toRightOf="@id/submitrate_rate2_ratetxt"
+            android:layout_marginLeft="5dp"
+            android:layout_marginRight="10dp"
+            />
+    </RelativeLayout>
+
+    <RelativeLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+
+        >
+        <com.negah.telescope.app.view.CustomFontTextView
+            android:id="@+id/submitrate_rate3_title"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_alignParentRight="true"
+            android:text="@string/UILable"
+            android:textSize="@dimen/text_size_medium"
+            android:layout_marginRight="20dp"
+            />
+
+        <com.negah.telescope.app.view.CustomFontTextView
+            android:id="@+id/submitrate_rate3_ratetxt"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_alignParentLeft="true"
+            android:text="8"
+            android:textSize="@dimen/text_size_large"
+            android:layout_below="@id/submitrate_rate3_title"
+            android:layout_marginLeft="20dp"
+
+            android:textColor="@color/ratebar_color3"
+
+
+            />
+        <org.adw.library.widgets.discreteseekbar.DiscreteSeekBar
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            app:dsb_max="10"
+            app:dsb_min="0"
+            app:dsb_value="5"
+            app:dsb_progressColor="@color/ratebar_color3"
+            app:dsb_trackColor="@color/ratebar_color3"
+            app:dsb_indicatorColor="@color/ratebar_color3"
+            android:layout_below="@id/submitrate_rate3_title"
+            android:layout_alignParentRight="true"
+            android:layout_toRightOf="@id/submitrate_rate3_ratetxt"
+            android:layout_marginLeft="5dp"
+            android:layout_marginRight="10dp"
+            />
+    </RelativeLayout>
+    <RelativeLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+
+        >
+        <com.negah.telescope.app.view.CustomFontTextView
+            android:id="@+id/submitrate_rate4_title"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_alignParentRight="true"
+            android:text="@string/UILable"
+            android:textSize="@dimen/text_size_medium"
+
+            android:layout_marginRight="20dp"
+            />
+
+        <com.negah.telescope.app.view.CustomFontTextView
+            android:id="@+id/submitrate_rate4_ratetxt"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_alignParentLeft="true"
+            android:text="8"
+            android:textSize="@dimen/text_size_large"
+            android:layout_below="@id/submitrate_rate4_title"
+            android:layout_marginLeft="20dp"
+
+            android:textColor="@color/ratebar_color4"
+
+
+            />
+        <org.adw.library.widgets.discreteseekbar.DiscreteSeekBar
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            app:dsb_max="10"
+            app:dsb_min="0"
+            app:dsb_value="5"
+            app:dsb_progressColor="@color/ratebar_color4"
+            app:dsb_trackColor="@color/ratebar_color4"
+            app:dsb_indicatorColor="@color/ratebar_color4"
+            android:layout_below="@id/submitrate_rate4_title"
+            android:layout_alignParentRight="true"
+            android:layout_toRightOf="@id/submitrate_rate4_ratetxt"
+            android:layout_marginLeft="5dp"
+            android:layout_marginRight="10dp"
+            />
+    </RelativeLayout>
+    <RelativeLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+
+        >
+        <com.negah.telescope.app.view.CustomFontTextView
+            android:id="@+id/submitrate_rate5_title"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_alignParentRight="true"
+            android:text="@string/UILable"
+            android:textSize="@dimen/text_size_medium"
+
+            android:layout_marginRight="20dp"
+            />
+
+        <com.negah.telescope.app.view.CustomFontTextView
+            android:id="@+id/submitrate_rate5_ratetxt"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_alignParentLeft="true"
+            android:text="8"
+            android:textSize="@dimen/text_size_large"
+            android:layout_below="@id/submitrate_rate5_title"
+            android:layout_marginLeft="20dp"
+
+            android:textColor="@color/ratebar_color5"
+
+
+            />
+        <org.adw.library.widgets.discreteseekbar.DiscreteSeekBar
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            app:dsb_max="10"
+            app:dsb_min="0"
+            app:dsb_value="5"
+            app:dsb_progressColor="@color/ratebar_color5"
+            app:dsb_trackColor="@color/ratebar_color5"
+            app:dsb_indicatorColor="@color/ratebar_color5"
+            android:layout_below="@id/submitrate_rate5_title"
+            android:layout_alignParentRight="true"
+            android:layout_toRightOf="@id/submitrate_rate5_ratetxt"
+            android:layout_marginLeft="5dp"
+            android:layout_marginRight="10dp"
+            />
+    </RelativeLayout>
+</LinearLayout>

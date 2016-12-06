@@ -4,7 +4,7 @@
     <!--app main color-->
     <color name="ColorPrimary">#f44336</color>
     <color name="ColorPrimaryDark">#b71c1c</color>
-    <color name="ColorAccent">#ef5350</color>
+    <color name="ColorAccent">#ff6d56</color>
 
     <!--tab color-->
     <color name="tabIndicatorColor">#FFFFFF</color>
@@ -25,6 +25,13 @@
     <color name="temp">#E64A19</color>
     <color name="temp2">#512DA8</color>
     <color name="edt_stroke">#8b8b8b</color>
-    <color name="username_color">#898989</color>
+    <color name="username_color">#9f9f9f</color>
+    <color name="market_btn_background">#ff6d56</color>
+
+    <color name="ratebar_color1">#411f0e</color>
+    <color name="ratebar_color2">#e18c01</color>
+    <color name="ratebar_color3">#fbcc01</color>
+    <color name="ratebar_color4">#709d6b</color>
+    <color name="ratebar_color5">#315625</color>
 
 </resources>

@@ -10,6 +10,10 @@ import android.support.v7.widget.RecyclerView;
 import android.support.v7.widget.StaggeredGridLayoutManager;
 import android.util.Log;
 import android.view.View;
+import android.view.Window;
+import android.widget.CheckBox;
+import android.widget.CompoundButton;
+import android.widget.LinearLayout;
 
 import com.negah.telescope.app.R;
 import com.negah.telescope.app.adapters.CommentAdapter;
@@ -48,18 +52,15 @@ public class CommentsActivity extends AppCompatActivity {
                 else return 1;
             }
         });*/
-
         commentsRecycler.setLayoutManager(gridLayoutManager);
         APIs apIs= Network.getRetrofit().create(APIs.class);
         Call<TelescopeComment> call =apIs.loadPostComments("21");
-
         call.enqueue(new Callback<TelescopeComment>() {
             @Override
             public void onResponse(Call<TelescopeComment> call, Response<TelescopeComment> response) {
                 Log.d(TAG,"SUCCESS "+response.body().comments.size());
                 if (response.body() != null) {
                     commentsRecycler.setAdapter(new CommentAdapter(response.body().comments, CommentsActivity.this));
-
                 }
             }
 
@@ -72,8 +73,20 @@ public class CommentsActivity extends AppCompatActivity {
         fab.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
-                Dialog msgsDialog=new Dialog(CommentsActivity.this);
+                Dialog msgsDialog=new Dialog(CommentsActivity.this,R.style.AppTheme_Dialog);
+                msgsDialog .requestWindowFeature(Window.FEATURE_NO_TITLE);
                 msgsDialog.setContentView(R.layout.submit_comment_layout);
+                final LinearLayout submitRatePanel= (LinearLayout) msgsDialog.findViewById(R.id.submit_rate_panel);
+                CheckBox submitRateCHB= (CheckBox) msgsDialog.findViewById(R.id.submit_comment_showrate_chb);
+                submitRateCHB.setOnCheckedChangeListener(new CompoundButton.OnCheckedChangeListener() {
+                    @Override
+                    public void onCheckedChanged(CompoundButton compoundButton, boolean b) {
+                        if(b){
+                            submitRatePanel.setVisibility(View.VISIBLE);
+                        }else
+                            submitRatePanel.setVisibility(View.GONE);
+                    }
+                });
                 msgsDialog.show();
             }
         });

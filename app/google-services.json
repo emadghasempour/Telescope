@@ -13,7 +13,7 @@
       },
       "oauth_client": [
         {
-          "client_id": "558377047142-rrehch4evvgde360ab3kj0j8iu7u37b5.apps.googleusercontent.com",
+          "client_id": "558377047142-sv6dnlbhbuclpaufoamdpsbq7h4gm8uh.apps.googleusercontent.com",
           "client_type": 1,
           "android_info": {
             "package_name": "com.negah.telescope.app",
@@ -21,13 +21,13 @@
           }
         },
         {
-          "client_id": "558377047142-s4ltr011k0dlakbj4drrv4ch4mo0japn.apps.googleusercontent.com",
+          "client_id": "558377047142-5u43r57kma9cul9v7bnpjlsb01089g9k.apps.googleusercontent.com",
           "client_type": 3
         }
       ],
       "api_key": [
         {
-          "current_key": "AIzaSyAGpJ42j2roaf4dtUjMA1hTtpNKUlzYfQw"
+          "current_key": "AIzaSyB3cAKAHA6pNtOZdi0iHVFyjuW5l-zs0VY"
         }
       ],
       "services": {

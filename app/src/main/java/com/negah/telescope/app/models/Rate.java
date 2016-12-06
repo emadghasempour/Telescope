@@ -9,16 +9,16 @@ public class Rate {
 
     @SerializedName("UI")
     @Expose
-    private Integer uI;
+    private Float uI;
     @SerializedName("UX")
     @Expose
-    private Integer uX;
+    private Float uX;
     @SerializedName("usibility")
     @Expose
-    private Integer usibility;
+    private Float usibility;
     @SerializedName("total")
     @Expose
-    private Integer total;
+    private Float total;
     @SerializedName("from")
     @Expose
     private Integer from;
@@ -28,16 +28,16 @@ public class Rate {
      * @return
      *     The uI
      */
-    public Integer getUI() {
+    public Float getUI() {
         return uI;
     }
 
     /**
-     * 
+     *
      * @param uI
      *     The UI
      */
-    public void setUI(Integer uI) {
+    public void setUI(Float uI) {
         this.uI = uI;
     }
 
@@ -46,16 +46,16 @@ public class Rate {
      * @return
      *     The uX
      */
-    public Integer getUX() {
+    public Float getUX() {
         return uX;
     }
 
     /**
-     * 
+     *
      * @param uX
      *     The UX
      */
-    public void setUX(Integer uX) {
+    public void setUX(Float uX) {
         this.uX = uX;
     }
 
@@ -64,16 +64,16 @@ public class Rate {
      * @return
      *     The usibility
      */
-    public Integer getUsibility() {
+    public Float getUsibility() {
         return usibility;
     }
 
     /**
-     * 
+     *
      * @param usibility
      *     The usibility
      */
-    public void setUsibility(Integer usibility) {
+    public void setUsibility(Float usibility) {
         this.usibility = usibility;
     }
 
@@ -82,16 +82,16 @@ public class Rate {
      * @return
      *     The total
      */
-    public Integer getTotal() {
+    public Float getTotal() {
         return total;
     }
 
     /**
-     * 
+     *
      * @param total
      *     The total
      */
-    public void setTotal(Integer total) {
+    public void setTotal(Float total) {
         this.total = total;
     }
 

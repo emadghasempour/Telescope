@@ -4,5 +4,8 @@
     <string name="type_your_commnet">نظر شما ...</string>
     <string name="signinwithgoogle">با اکانت گوگل وارد شوید</string>
     <string name="or">یا</string>
+    <string name="markets_link">مارکت ها</string>
+    <string name="submit_commnet">ثبت نظر</string>
+    <string name="UILable">رابط کاربری</string>
 
 </resources>

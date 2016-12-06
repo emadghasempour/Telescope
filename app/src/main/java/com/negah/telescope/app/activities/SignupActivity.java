@@ -18,13 +18,8 @@ import com.google.android.gms.common.ConnectionResult;
 import com.google.android.gms.common.api.GoogleApiClient;
 import com.google.android.gms.common.api.ResultCallback;
 import com.google.android.gms.common.api.Status;
-import com.google.android.gms.tasks.OnCompleteListener;
-import com.google.android.gms.tasks.Task;
-import com.google.firebase.auth.AuthCredential;
-import com.google.firebase.auth.AuthResult;
-import com.google.firebase.auth.FirebaseAuth;
-import com.google.firebase.auth.FirebaseUser;
-import com.google.firebase.auth.GoogleAuthProvider;
+
+
 import com.negah.telescope.app.R;
 
 /**
@@ -33,13 +28,14 @@ import com.negah.telescope.app.R;
 public class SignupActivity extends AppCompatActivity implements GoogleApiClient.OnConnectionFailedListener
         ,View.OnClickListener {
     private GoogleApiClient mGoogleApiClient;
-    private FirebaseAuth mAuth;
+
 
     private static final String TAG = "GoogleActivity";
     private static final int RC_SIGN_IN = 9001;
     Button signout,signup;
+
     // [START declare_auth_listener]
-    private FirebaseAuth.AuthStateListener mAuthListener;
+
 
     @Override
     protected void onCreate(@Nullable Bundle savedInstanceState) {
@@ -84,9 +80,7 @@ public class SignupActivity extends AppCompatActivity implements GoogleApiClient
     @Override
     public void onStop() {
         super.onStop();
-        if (mAuthListener != null) {
-           // mAuth.removeAuthStateListener(mAuthListener);
-        }
+
     }
 
     @Override
@@ -101,6 +95,7 @@ public class SignupActivity extends AppCompatActivity implements GoogleApiClient
                 Log.d(TAG,"SUCCESS ...");
                 // Google Sign In was successful, authenticate with Firebase
                 GoogleSignInAccount account = result.getSignInAccount();
+                Log.d(TAG,"result ..."+account.getDisplayName());
                 //firebaseAuthWithGoogle(account);
             } else {
 
@@ -113,33 +108,7 @@ public class SignupActivity extends AppCompatActivity implements GoogleApiClient
         }
     }
 
-    private void firebaseAuthWithGoogle(GoogleSignInAccount acct) {
-        Log.d(TAG, "firebaseAuthWithGoogle:" + acct.getId());
-        // [START_EXCLUDE silent]
-        //showProgressDialog();
-        // [END_EXCLUDE]
 
-        AuthCredential credential = GoogleAuthProvider.getCredential(acct.getIdToken(), null);
-        mAuth.signInWithCredential(credential)
-                .addOnCompleteListener(this, new OnCompleteListener<AuthResult>() {
-                    @Override
-                    public void onComplete(@NonNull Task<AuthResult> task) {
-                        Log.d(TAG, "signInWithCredential:onComplete:" + task.isSuccessful());
-
-                        // If sign in fails, display a message to the user. If sign in succeeds
-                        // the auth state listener will be notified and logic to handle the
-                        // signed in user can be handled in the listener.
-                        if (!task.isSuccessful()) {
-                            Log.w(TAG, "signInWithCredential", task.getException());
-                            Toast.makeText(SignupActivity.this, "Authentication failed.",
-                                    Toast.LENGTH_SHORT).show();
-                        }
-                        // [START_EXCLUDE]
-                        //hideProgressDialog();
-                        // [END_EXCLUDE]
-                    }
-                });
-    }
 
     private void signIn() {
         Log.d(TAG,"SIGNING IN ...");

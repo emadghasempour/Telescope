@@ -7,6 +7,8 @@ import android.content.SharedPreferences;
 import android.graphics.Typeface;
 import android.os.Build;
 import android.provider.Settings;
+import android.support.annotation.Nullable;
+import android.util.DisplayMetrics;
 import android.view.View;
 import android.view.ViewAnimationUtils;
 
@@ -32,11 +34,11 @@ public class E {
     }
 
     @TargetApi(Build.VERSION_CODES.LOLLIPOP)
-    public static void RevealAnimationShow(View v){
+    public static void RevealAnimationShow(View v,@Nullable int startFromX,@Nullable int startFromY){
         int cx=v.getRight()-30;
         int cy=v.getBottom()-60;
         int radius=Math.max(v.getWidth(),v.getHeight());
-        Animator anim= ViewAnimationUtils.createCircularReveal(v,cx,cy,0,radius);
+        Animator anim= ViewAnimationUtils.createCircularReveal(v,startFromX,startFromY,0,radius);
         v.setVisibility(View.VISIBLE);
         anim.start();
     }
@@ -71,6 +73,15 @@ public class E {
 
         anim.start();
     }
+    public static int dpToPx(Context context,int dp) {
+        DisplayMetrics displayMetrics = context.getResources().getDisplayMetrics();
+        int px = Math.round(dp * (displayMetrics.xdpi / DisplayMetrics.DENSITY_DEFAULT));
+        return px;
+    }
 
-
+    public static int pxToDp(Context context,int px) {
+        DisplayMetrics displayMetrics = context.getResources().getDisplayMetrics();
+        int dp = Math.round(px / (displayMetrics.xdpi / DisplayMetrics.DENSITY_DEFAULT));
+        return dp;
+    }
 }

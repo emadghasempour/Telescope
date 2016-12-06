@@ -2,7 +2,8 @@
 <android.support.v7.widget.CardView
     xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:card_view="http://schemas.android.com/apk/res-auto"
-    android:id="@+id/poetitem_parent_card"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+       android:id="@+id/poetitem_parent_card"
     android:layout_width="match_parent"
     android:layout_height="wrap_content"
     android:layout_marginBottom="4dp"
@@ -39,6 +40,10 @@
                     android:layout_centerVertical="true"
                     android:layout_alignParentRight="true"
                     android:layout_marginRight="10dp"
+                    app:border_color="@color/divider"
+                    app:border_width="0dip"
+                    app:is_oval="true"
+                    app:round_background="true"
                     />
                 <com.negah.telescope.app.view.CustomFontTextView
                     android:id="@+id/comment_item_username"
@@ -49,25 +54,45 @@
                     android:layout_centerVertical="true"
                     android:layout_marginRight="10dp"
                     />
+                <com.negah.telescope.app.view.CustomFontTextView
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:text="date"
+                    android:textSize="@dimen/text_size_small"
+                    android:layout_centerVertical="true"
+                    android:layout_marginLeft="10dp"
+                    />
             </RelativeLayout>
 
             <com.negah.telescope.app.view.CustomFontTextView
                 android:id="@+id/comment_item_comments"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
-                android:text="comment"
+                android:text="commnet"
+                android:textSize="@dimen/text_size_medium"
+                android:gravity="right"
                 android:layout_below="@id/comment_item_userinfo"
-               android:layout_centerHorizontal="true"
+               android:layout_alignParentRight="true"
                 android:layout_marginTop="10dp"
+                android:layout_marginBottom="20dp"
+                android:layout_marginLeft="10dp"
+                android:layout_marginRight="10dp"
                 />
 
-            <RelativeLayout
+           <!-- <RelativeLayout
                 android:layout_width="match_parent"
                 android:layout_height="70dp"
                 android:layout_below="@id/comment_item_comments"
                 android:layout_marginTop="10dp"
-                ></RelativeLayout>
-
+                android:visibility="gone"
+                ></RelativeLayout>-->
+            <include
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                layout="@layout/submit_rate_layout"
+                android:layout_below="@id/comment_item_comments"
+                android:layout_marginBottom="10dp"
+                />
             </RelativeLayout>
         </RelativeLayout>
     </android.support.v7.widget.CardView>

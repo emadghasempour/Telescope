@@ -65,6 +65,7 @@ public class RecentPostAdapter extends RecyclerView.Adapter<RecentPostAdapter.Re
                 recentItemApp.title.setText(items.get(position).getTitle());
                 recentItemApp.appName.setText(items.get(position).getAppname());
                 recentItemApp.vendor.setText(items.get(position).getVendor());
+                recentItemApp.writer.setText(items.get(position).getWriter());
                 break;
             case POST_TYPE_CUSTOM:
                 RecentItemCustom recentItemCustom = (RecentItemCustom) holder;
@@ -93,7 +94,7 @@ public class RecentPostAdapter extends RecyclerView.Adapter<RecentPostAdapter.Re
 
     private class RecentItemApp extends RecentItem{
         ImageView icon;
-        CustomFontTextView appName,vendor,date,title;
+        CustomFontTextView appName,vendor,date,title,writer;
         CardView parent;
         public RecentItemApp(View itemView) {
             super(itemView);
@@ -102,6 +103,7 @@ public class RecentPostAdapter extends RecyclerView.Adapter<RecentPostAdapter.Re
             date= (CustomFontTextView) itemView.findViewById(R.id.recent_app_date);
             title= (CustomFontTextView) itemView.findViewById(R.id.recent_app_title);
             icon= (ImageView) itemView.findViewById(R.id.recent_app_icon);
+            writer= (CustomFontTextView) itemView.findViewById(R.id.recent_app_userName);
             parent= (CardView) itemView.findViewById(R.id.recent_app_parent);
             parent.setOnClickListener(this);
         }

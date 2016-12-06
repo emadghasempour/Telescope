@@ -1,9 +1,11 @@
 package com.negah.telescope.app.activities;
 
+import android.content.Context;
 import android.content.Intent;
 import android.content.SharedPreferences;
 import android.net.Uri;
 import android.os.Bundle;
+import android.os.Vibrator;
 import android.preference.PreferenceManager;
 import android.support.design.widget.NavigationView;
 import android.support.v4.app.FragmentManager;
@@ -16,14 +18,16 @@ import android.support.v7.widget.Toolbar;
 import android.view.Menu;
 import android.view.MenuInflater;
 import android.view.MenuItem;
+import android.widget.Toast;
 
 
 import com.negah.telescope.app.R;
 import com.negah.telescope.app.fragments.FragmentFavorite;
 import com.negah.telescope.app.fragments.TabFragment;
 import com.negah.telescope.app.preferences.SettingsActivity;
+import com.negah.telescope.app.utilities.ShakeListener;
 
-public class MainActivity extends AppCompatActivity {
+public class MainActivity extends AppCompatActivity{
 
     Toolbar toolbar;
     DrawerLayout mDrawerLayout;
@@ -31,9 +35,7 @@ public class MainActivity extends AppCompatActivity {
     FragmentManager mFragmentManager;
     FragmentTransaction mFragmentTransaction;
     SharedPreferences preferences;
-
-    //private AdView mAdView;
-    //private StartAppAd startAppAd = new StartAppAd(this);
+    ShakeListener mShaker;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -161,7 +163,18 @@ public class MainActivity extends AppCompatActivity {
 
         // init analytics tracker
       //  ((Analytics) getApplication()).getTracker();
+        mShaker = new ShakeListener(this);
+        mShaker.setOnShakeListener(new ShakeListener.OnShakeListener () {
+            public void onShake()
+            {
+                final Vibrator vibe = (Vibrator)getSystemService(Context.VIBRATOR_SERVICE);
+                vibe.vibrate(100);
+                Toast.makeText(MainActivity.this,"shake",Toast.LENGTH_SHORT).show();
+            }
+        });
     }
+
+
 
     @Override
     public boolean onCreateOptionsMenu(Menu menu) {
@@ -223,11 +236,13 @@ public class MainActivity extends AppCompatActivity {
     @Override
     protected void onPause() {
         //mAdView.pause();
+        mShaker.pause();
         super.onPause();
     }
 
     @Override
     protected void onResume() {
+        mShaker.resume();
         super.onResume();
        // mAdView.resume();
     }
@@ -235,7 +250,10 @@ public class MainActivity extends AppCompatActivity {
     @Override
     protected void onDestroy() {
         //mAdView.destroy();
+
         super.onDestroy();
     }
+
+
 
 }

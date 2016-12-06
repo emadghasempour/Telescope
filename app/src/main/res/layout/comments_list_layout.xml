@@ -8,19 +8,26 @@
     android:id="@+id/poetpage_coordinate"
     android:fitsSystemWindows="true"
     >
-<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
-    android:layout_width="match_parent"
-    android:layout_height="wrap_content"
-    xmlns:app="http://schemas.android.com/apk/res-auto">
+    <android.support.design.widget.AppBarLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:theme="@style/ThemeOverlay.AppCompat.Dark.ActionBar">
+    <android.support.v7.widget.Toolbar
+        android:id="@+id/toolbar"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:background="@color/ColorPrimary"
+        android:theme="@style/ThemeOverlay.AppCompat.Dark.ActionBar"
+        app:popupTheme="@style/ThemeOverlay.AppCompat.Light" />
+    </android.support.design.widget.AppBarLayout>
+
     <android.support.v7.widget.RecyclerView
         android:id="@+id/comments_recycler"
         android:layout_width="match_parent"
-        android:layout_height="wrap_content">
+        android:layout_height="wrap_content"
+        app:layout_behavior="@string/appbar_scrolling_view_behavior">
 
     </android.support.v7.widget.RecyclerView>
-
-
-</RelativeLayout>
     <android.support.design.widget.FloatingActionButton
         android:id="@+id/comments_fab_add"
         android:layout_width="wrap_content"
@@ -29,5 +36,6 @@
         android:layout_margin="@dimen/fab_margin"
         android:foregroundGravity="bottom"
         android:layout_gravity="bottom|end"
+        android:src="@drawable/ic_add"
         />
     </android.support.design.widget.CoordinatorLayout>

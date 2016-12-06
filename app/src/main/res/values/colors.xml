@@ -1,4 +1,5 @@
 <?xml version="1.0" encoding="utf-8"?>
 <resources>
-    <color name="poet_coordinate_background">#a754f5</color>
+    <color name="poet_coordinate_background">#f0f2f3</color>
+    <color name="opacitygray">#952a2723</color>
 </resources>

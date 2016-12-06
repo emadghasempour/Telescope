@@ -9,6 +9,7 @@ import java.util.Locale;
  * Created by emad on 11/22/2016.
  */
 public class Telescope extends Application {
+    public static boolean IS_USER_LOGED_IN=false;
     @Override
     public void onCreate() {
         super.onCreate();

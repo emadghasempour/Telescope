@@ -33,8 +33,11 @@ import com.negah.telescope.app.activities.DetailActivity;
 import com.negah.telescope.app.adapters.AdapterFullBannerList;
 import com.negah.telescope.app.adapters.BannerCategoriesAdapter;
 import com.negah.telescope.app.adapters.CategoryAdapter;
+import com.negah.telescope.app.adapters.CategoryCombinedAdapter;
 import com.negah.telescope.app.json.JsonConfig;
 import com.negah.telescope.app.json.JsonUtils;
+import com.negah.telescope.app.models.Banner;
+import com.negah.telescope.app.models.Category;
 import com.negah.telescope.app.models.ItemCategory;
 import com.negah.telescope.app.services.Network;
 import com.negah.telescope.app.services.api.APIs;
@@ -67,6 +70,10 @@ public class FragmentNewsCategory extends Fragment {
     CategoryAdapter categoryAdapter;
     //private InterstitialAd interstitial;
     String TAG= FragmentNewsCategory.class.getSimpleName();
+    boolean isCategoriesRequestFinished=false,isBannersRequestFinished=false;
+    private List<Category> categories;
+    private List<Banner> banners;
+
     @Nullable
     @Override
     public View onCreateView(LayoutInflater inflater, ViewGroup container, Bundle savedInstanceState) {
@@ -100,14 +107,21 @@ public class FragmentNewsCategory extends Fragment {
             @Override
             public void onResponse(Call<TelescopeCategory> call, Response<TelescopeCategory> response) {
                 Log.d(TAG,"categories " + response.body().categories.size());
-                categoryAdapter=new CategoryAdapter(getContext(),response.body().categories);
+                /*categoryAdapter=new CategoryAdapter(getContext(),response.body().categories);
                 categoryAdapter.setOnItemClickListener(new CategoryAdapter.OnItemClickListener() {
                     @Override
                     public void onItemClick(View view, int position) {
 
                     }
                 });
-                categoriesRecyclerView.setAdapter(categoryAdapter);
+                categoriesRecyclerView.setAdapter(categoryAdapter);*/
+                if(response.isSuccessful()) {
+                    isCategoriesRequestFinished = true;
+                    categories = response.body().categories;
+                    if (isBannersRequestFinished) {
+                        CreateCategoryList(categories, banners);
+                    }
+                }
             }
 
             @Override
@@ -181,8 +195,17 @@ public class FragmentNewsCategory extends Fragment {
             @Override
             public void onResponse(Call<TelescopeBanner> call, Response<TelescopeBanner> response) {
                 Log.d(TAG,"SIZE " + response.body().banners.size());
-               BannerCategoriesAdapter bannersadapter= new BannerCategoriesAdapter(response.body().banners,getContext());
-                bannerRecyclerView.setAdapter(bannersadapter);
+               /*BannerCategoriesAdapter bannersadapter= new BannerCategoriesAdapter(response.body().banners,getContext());
+                bannerRecyclerView.setAdapter(bannersadapter);*/
+                if(response.isSuccessful()){
+                    isBannersRequestFinished=true;
+                    banners=response.body().banners;
+                    if(isCategoriesRequestFinished){
+                        CreateCategoryList(categories,banners);
+                    }
+                }
+
+
 
 
             }
@@ -194,6 +217,28 @@ public class FragmentNewsCategory extends Fragment {
         });
 
         return v;
+    }
+
+    private void CreateCategoryList(List<Category> categories, List<Banner> banners){
+        final List<Object> items=new ArrayList<>();
+        items.addAll(categories);
+        items.addAll(banners);
+        int columns=getResources().getInteger(R.integer.categories_column_count);
+        GridLayoutManager gridLayoutManager=new GridLayoutManager(getContext(),2);
+        gridLayoutManager.setSpanSizeLookup(new GridLayoutManager.SpanSizeLookup() {
+            @Override
+            public int getSpanSize(int position) {
+                if(items.get(position) instanceof Category)
+                    return 1;
+                else if(items.get(position) instanceof Banner){
+                    return 2;
+                }
+                return 1;
+            }
+        });
+        categoriesRecyclerView.setLayoutManager(gridLayoutManager);
+        CategoryCombinedAdapter adapter=new CategoryCombinedAdapter(getContext(),items);
+        categoriesRecyclerView.setAdapter(adapter);
     }
 
     private class MyTask extends AsyncTask<String, Void, String> {

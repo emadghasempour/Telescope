@@ -29,8 +29,8 @@ import android.widget.Toast;
 
 import com.negah.telescope.app.Config;
 import com.negah.telescope.app.R;
-import com.negah.telescope.app.activities.ActivitySplash;
-import com.negah.telescope.app.adapters.AdFragmentPagerAdapter;
+import com.negah.telescope.app.activities.AppDetailsActivity;
+import com.negah.telescope.app.activities.PostDetailActivity;
 import com.negah.telescope.app.adapters.AdapterRecent;
 import com.negah.telescope.app.adapters.RecentPostAdapter;
 import com.negah.telescope.app.json.JsonConfig;
@@ -169,7 +169,7 @@ public class FragmentNewsRecent extends Fragment {
         listView.setOnItemClickListener(new AdapterView.OnItemClickListener() {
             @Override
             public void onItemClick(AdapterView<?> adapterView, View view, int i, long l) {
-                Intent i2=new Intent(getActivity(),ActivitySplash.class);
+                Intent i2=new Intent(getActivity(),AppDetailsActivity.class);
                 getActivity().startActivity(i2);
             }
         });
@@ -197,13 +197,20 @@ public class FragmentNewsRecent extends Fragment {
         Call<TelescopeRecent> calllatest =apIs.loadRecent();
         calllatest.enqueue(new Callback<TelescopeRecent>() {
             @Override
-            public void onResponse(Call<TelescopeRecent> call, Response<TelescopeRecent> response) {
+            public void onResponse(Call<TelescopeRecent> call, final Response<TelescopeRecent> response) {
                 recentAdapter=new RecentPostAdapter(response.body().items,getContext());
                 recentAdapter.setOnItemClickListener(new RecentPostAdapter.OnItemClickListener() {
                     @Override
                     public void onItemClick(View view, int position) {
-                        Intent i2=new Intent(getActivity(),ActivitySplash.class);
-                        getActivity().startActivity(i2);
+                        if(response.body().items.get(position).getPostType()==1) {
+                            Intent i2 = new Intent(getActivity(), AppDetailsActivity.class);
+                            getActivity().startActivity(i2);
+                        }
+                        else if(response.body().items.get(position).getPostType()==2){
+                            Intent i2 = new Intent(getActivity(), PostDetailActivity.class);
+                            getActivity().startActivity(i2);
+                        }
+
                     }
                 });
                 recyclerView.setAdapter(recentAdapter);

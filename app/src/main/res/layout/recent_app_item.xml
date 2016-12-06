@@ -27,7 +27,6 @@
                 android:translationZ="10dp"
                 android:layout_marginLeft="20dp"
                 android:layout_marginRight="20dp"
-                android:align="@id/recent_app_appname"
                 />
 
             <com.negah.telescope.app.view.CustomFontTextView
@@ -37,15 +36,20 @@
                 android:text="AppName"
                 android:layout_marginTop="60dp"
                 android:layout_toLeftOf="@+id/recent_app_icon"
+                android:textSize="@dimen/recent_appname"
+                android:textColor="@color/username_color"
                 />
             <com.negah.telescope.app.view.CustomFontTextView
                 android:id="@+id/recent_app_vendor"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:text="Vendor"
-                android:layout_marginTop="5dp"
+                android:layout_marginTop="2dp"
                 android:layout_below="@id/recent_app_appname"
+                android:textSize="@dimen/recent_appvendor"
                 android:layout_toLeftOf="@+id/recent_app_icon"
+                android:textColor="@color/username_color"
+
                 />
             <com.negah.telescope.app.view.CustomFontTextView
                 android:id="@+id/recent_app_title"
@@ -55,8 +59,11 @@
                 android:layout_below="@id/recent_app_icon"
                 android:layout_centerHorizontal="true"
                 android:layout_marginTop="20dp"
-                android:text="title"
-                android:textSize="20sp"
+                android:layout_marginLeft="10dp"
+                android:layout_marginRight="10dp"
+                android:gravity="center"
+                android:text="tiasfaacacascascascacacacacascascatle"
+                android:textSize="@dimen/recent_post_title"
 
                 />
             <com.negah.telescope.app.view.CustomFontTextView
@@ -102,6 +109,7 @@
                     android:layout_centerVertical="true"
                     android:layout_marginLeft="20dp"
                     android:textSize="25sp"
+                    android:textColor="@color/username_color"
 
                     />
             </RelativeLayout>

@@ -8,12 +8,26 @@
         <item name="colorAccent">@color/ColorAccent</item>
         <item name="drawerArrowStyle">@style/DrawerArrowStyle</item>
     </style>
+     <style name="AppTheme_Dialog" parent="Theme.AppCompat.Light.Dialog">
+         <item name="colorPrimary">@color/ColorPrimary</item>
+         <item name="colorPrimaryDark">@color/ColorPrimaryDark</item>
+         <item name="colorAccent">@color/ColorAccent</item>
+         <item name="drawerArrowStyle">@style/DrawerArrowStyle</item>
 
+     </style>
     <style name="DrawerArrowStyle" parent="Widget.AppCompat.DrawerArrowToggle">
         <item name="spinBars">true</item>
         <item name="color">@android:color/white</item>
     </style>
 
     <style name="apptheme_red" parent="AppTheme" />
+    <style name="AppTheme.Seek" parent="AppTheme">
+
+        <item name="colorPrimary">@color/ratebar_color1</item>
+        <item name="colorPrimaryDark">@color/ColorPrimaryDark</item>
+        <item name="colorAccent">@color/ratebar_color1</item>
+    </style>
+
+
 
 </resources>

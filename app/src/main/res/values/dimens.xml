@@ -10,9 +10,23 @@
     <dimen name="poetitem_height">170dp</dimen>
     <dimen name="fab_margin">16dp</dimen>
     <dimen name="user_recen_margin">10dp</dimen>
+    <dimen name="detail_appname">20sp</dimen>
+    <dimen name="detail_shorttext">15sp</dimen>
+    <dimen name="recent_appname">18sp</dimen>
+    <dimen name="recent_post_title">20sp</dimen>
+    <dimen name="recent_appvendor">13sp</dimen>
 
     <integer name="viewport_width">24</integer>
     <integer name="viewport_height">24</integer>
     <integer name="viewport_center_x">12</integer>
     <integer name="viewport_center_y">12</integer>
+
+    <dimen name="text_size_small">13sp</dimen>
+    <dimen name="text_size_medium">17sp</dimen>
+    <dimen name="text_size_large">23sp</dimen>
+    <dimen name="showrate_item_title_width">100dp</dimen>
+    <dimen name="showrate_item_title_padding">15dp</dimen>
+    <dimen name="showrate_progress_height">20dp</dimen>
+    <dimen name="showrate_item_prg_margin">10dp</dimen>
+
 </resources>
