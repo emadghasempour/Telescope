@@ -2,10 +2,12 @@
 <LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
     android:layout_width="match_parent"
     android:layout_height="200dp"
-    android:background="@drawable/header_image"
+    android:background="@color/ColorPrimary"
+    android:id="@+id/na_header_container"
     android:orientation="vertical">
 
     <LinearLayout
+
         android:layout_width="match_parent"
         android:layout_height="200dp"
         android:padding="16dp"
@@ -13,29 +15,34 @@
         android:gravity="bottom">
 
         <ImageView
+
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:id="@+id/imageView"
-            android:src="@mipmap/ic_launcher"
+            android:id="@+id/navigation_header_image"
+            android:src="@drawable/ic_account_circle"
             android:layout_marginBottom="6dp"
+            android:layout_gravity="center"
             android:visibility="@string/drawer_visibility"/>
 
-        <TextView
+        <com.negah.telescope.app.view.CustomFontTextView
+            android:id="@+id/navigation_header_name"
             android:textColor="#ffffff"
-            android:textSize="14sp"
+            android:textSize="@dimen/text_size_medium"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:text="@string/app_name"
+            android:text="@string/please_login_or_signup"
+            android:gravity="center"
             android:visibility="@string/drawer_visibility"/>
 
-        <TextView
+        <com.negah.telescope.app.view.CustomFontTextView
             android:textColor="#ffffff"
             android:textSize="12sp"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:text="@string/app_email"
+            android:gravity="center"
             android:paddingTop="6dp"
-            android:visibility="@string/drawer_visibility"/>
+            android:visibility="invisible"/>
 
     </LinearLayout>
 

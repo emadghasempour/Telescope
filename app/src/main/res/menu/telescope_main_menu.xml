@@ -1,0 +1,19 @@
+<?xml version="1.0" encoding="utf-8"?>
+<menu xmlns:android="http://schemas.android.com/apk/res/android">
+    <group android:checkableBehavior="none">
+        <item
+            android:id="@+id/introduce"
+            android:icon="@drawable/ic_assignment"
+
+            android:title="@string/introduce_txt" />
+        <item
+            android:id="@+id/drawer_setting"
+            android:icon="@drawable/ic_assignment"
+
+            android:title="@string/drawer_setting_txt" />
+        <item
+            android:id="@+id/drawer_about"
+            android:icon="@drawable/ic_info_about"
+            android:title="@string/introduce_txt" />
+    </group>
+</menu>

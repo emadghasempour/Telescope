@@ -113,7 +113,7 @@ public class CategoryCombinedAdapter extends RecyclerView.Adapter<CategoryCombin
             image= (ImageView) itemView.findViewById(R.id.category_image);
             title= (TextView) itemView.findViewById(R.id.category_title);
             parent= (CardView) itemView.findViewById(R.id.category_item_parent_layout);
-            parent.setOnClickListener(this);
+            //parent.setOnClickListener(this);
 
         }
 
@@ -122,16 +122,16 @@ public class CategoryCombinedAdapter extends RecyclerView.Adapter<CategoryCombin
 
     public  class BannerViewHolder extends CategoryItem{
 
-        RelativeLayout parent;
+        CardView parent;
         CustomFontTextView title,owner;
         ImageView banner;
         public BannerViewHolder(View itemView) {
             super(itemView);
-            parent= (RelativeLayout) itemView.findViewById(R.id.bannerCategory_parent);
+            parent= (CardView) itemView.findViewById(R.id.bannerCategory_parent);
             title= (CustomFontTextView) itemView.findViewById(R.id.bannerCategory_txt);
             owner= (CustomFontTextView) itemView.findViewById(R.id.bannerCategory_owner);
             banner= (ImageView) itemView.findViewById(R.id.bannerCategory_img);
-            parent.setOnClickListener(this);
+            //parent.setOnClickListener(this);
         }
 
 

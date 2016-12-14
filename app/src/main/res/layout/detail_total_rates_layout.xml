@@ -1,0 +1,69 @@
+<?xml version="1.0" encoding="utf-8"?>
+<android.support.v7.widget.CardView xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:layout_marginBottom="5dp"
+    android:foreground="?android:attr/selectableItemBackground"
+    android:id="@+id/bannerCategory_parent"
+    android:layout_marginLeft="5dp"
+    android:layout_marginRight="5dp"
+    android:layout_marginTop="5dp"
+
+    >
+    <RelativeLayout
+
+        android:layout_width="match_parent"
+        android:layout_height="match_parent">
+       <com.negah.telescope.app.view.CustomFontTextView
+           android:id="@+id/desc_app_total_rate_title"
+           android:layout_width="wrap_content"
+           android:layout_height="wrap_content"
+           android:text="@string/total_rates"
+           android:layout_alignParentRight="true"
+           android:textSize="@dimen/text_size_medium"
+           android:layout_marginRight="10dp"
+           android:layout_marginTop="10dp"
+           />
+        <include
+            android:id="@+id/desc_app_total_rate_bar"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            layout="@layout/submit_rate_layout"
+            android:layout_marginTop="16dp"
+            android:layout_below="@id/desc_app_total_rate_title"
+            >
+        </include>
+
+        <RelativeLayout
+            android:id="@+id/desc_app_total_rate_txt_parent"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_below="@id/desc_app_total_rate_bar"
+            android:layout_marginTop="20dp"
+            android:visibility="gone"
+            >
+            <com.negah.telescope.app.view.CustomFontTextView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:textSize="@dimen/text_size_xlarge"
+                android:text="8.3"
+                android:layout_centerVertical="true"
+                android:layout_marginLeft="20dp"
+                />
+
+        </RelativeLayout>
+
+        <com.negah.telescope.app.view.CustomFontButton
+            android:id="@+id/desc_app_show_all_comments_btn"
+            android:layout_marginTop="10dp"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_below="@id/desc_app_total_rate_txt_parent"
+            style="@style/Widget.AppCompat.Button.Borderless.Colored"
+            android:text="@string/show_all_comments"
+            />
+    </RelativeLayout>
+
+</android.support.v7.widget.CardView>

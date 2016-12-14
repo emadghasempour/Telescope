@@ -1,15 +1,33 @@
 <?xml version="1.0" encoding="utf-8"?>
-<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
-    android:layout_width="match_parent" android:layout_height="match_parent">
 
-    <ImageView
-        android:layout_width="100dp"
-        android:layout_height="100dp"
-        android:layout_centerHorizontal="true"
-        android:layout_alignParentTop="true"
-        android:src="@mipmap/ic_launcher"
-        android:layout_marginTop="20dp"
-        />
+<android.support.design.widget.CoordinatorLayout
+    xmlns:android="http://schemas.android.com/apk/res/android" android:layout_width="match_parent"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_height="match_parent"
+
+    android:id="@+id/poetpage_coordinate"
+    android:fitsSystemWindows="true"
+    >
+    <android.support.design.widget.AppBarLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:visibility="visible"
+        android:background="#00000000"
+        android:theme="@style/ThemeOverlay.AppCompat.Dark.ActionBar">
+        <android.support.v7.widget.Toolbar
+            android:id="@+id/signup_toolbar"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+
+            android:theme="@style/ThemeOverlay.AppCompat.Dark.ActionBar"
+            app:popupTheme="@style/ThemeOverlay.AppCompat.Light" />
+    </android.support.design.widget.AppBarLayout>
+<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    app:layout_behavior="@string/appbar_scrolling_view_behavior">
+    >
 
     <RelativeLayout
         android:layout_width="match_parent"
@@ -43,7 +61,7 @@
                 android:id="@+id/signup_password_edt"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
-                android:hint="password"
+                android:hint="@string/title_app_password"
                 android:textDirection="locale"
                 android:layoutDirection="locale"
                 android:gravity="right"
@@ -51,13 +69,13 @@
 
         </android.support.design.widget.TextInputLayout>
 
-    <com.negah.telescope.app.view.CustomFontButton
+        <com.negah.telescope.app.view.CustomFontButton
         android:id="@+id/signup_signin_btn"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:layout_below="@+id/signup_password_layout"
         android:layout_alignParentLeft="true"
-        android:text="signin"
+        android:text="@string/title_app_signin"
         android:elevation="10dp"
         style="@style/Widget.AppCompat.Button.Colored"
         />
@@ -70,12 +88,13 @@
             android:layout_centerHorizontal="true"
             />
 
+
     </RelativeLayout>
 
     <com.negah.telescope.app.view.CustomFontButton
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:text="@string/signinwithgoogle"
+        android:text="@string/title_app_signinwithgoogle"
         android:id="@+id/signup_signup_btn"
         android:layout_marginLeft="45dp"
         style="@style/Widget.AppCompat.Button.Colored"
@@ -85,5 +104,15 @@
         android:drawableRight="@drawable/google2"
         android:layout_below="@+id/relativeLayout2"
         android:layout_centerHorizontal="true" />
+    <ImageView
+        android:layout_width="70dp"
+        android:layout_height="70dp"
+        android:layout_centerHorizontal="true"
+        android:layout_above="@id/relativeLayout2"
+
+        android:src="@drawable/telescopelogo"
+        android:layout_marginBottom="20dp"
+        />
 
 </RelativeLayout>
+    </android.support.design.widget.CoordinatorLayout>

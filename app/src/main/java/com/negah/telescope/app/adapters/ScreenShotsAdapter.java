@@ -48,6 +48,7 @@ public class ScreenShotsAdapter extends RecyclerView.Adapter<ScreenShotsAdapter.
     public ScreenShotItem(View itemView) {
         super(itemView);
         image= (ImageView) itemView.findViewById(R.id.screen_image);
+        image.setOnClickListener(this);
     }
 
     @Override

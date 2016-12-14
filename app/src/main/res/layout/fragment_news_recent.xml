@@ -16,7 +16,7 @@
         android:background="@color/background_color"
         android:gravity="center"
 
-        android:padding="5dp">
+        >
         <android.support.v7.widget.RecyclerView
             android:id="@+id/rcyclr_latest"
             android:layout_width="match_parent"

@@ -2,10 +2,13 @@
 <resources>
 
     <!--app main color-->
-    <color name="ColorPrimary">#f44336</color>
-    <color name="ColorPrimaryDark">#b71c1c</color>
-    <color name="ColorAccent">#ff6d56</color>
-
+    <!--<color name="ColorPrimary">#f44336</color>
+    -->
+   <!-- <color name="ColorPrimaryDark">#b71c1c</color>
+    <color name="ColorAccent">#ff6d56</color>-->
+    <color name="ColorPrimary">#ff9742</color>
+    <color name="ColorPrimaryDark">#ff8019</color>
+    <color name="ColorAccent">#fd9642</color>
     <!--tab color-->
     <color name="tabIndicatorColor">#FFFFFF</color>
     <color name="tabSelectedTextColor">#FFFFFF</color>
@@ -33,5 +36,6 @@
     <color name="ratebar_color3">#fbcc01</color>
     <color name="ratebar_color4">#709d6b</color>
     <color name="ratebar_color5">#315625</color>
-
+    <color name="loading_color">#b6b6b6</color>
+    <color name="transparent">#00000000</color>
 </resources>

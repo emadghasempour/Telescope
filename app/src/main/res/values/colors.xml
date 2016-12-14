@@ -1,5 +1,6 @@
 <?xml version="1.0" encoding="utf-8"?>
 <resources>
     <color name="poet_coordinate_background">#f0f2f3</color>
-    <color name="opacitygray">#952a2723</color>
+    <color name="opacitygray">#fadcdcdc</color>
+    <color name="marketsbackground">#ff9742</color>
 </resources>

@@ -1,31 +1,42 @@
 package com.negah.telescope.app.activities;
 
+import android.content.ActivityNotFoundException;
 import android.content.Context;
 import android.content.Intent;
 import android.content.SharedPreferences;
+import android.graphics.Color;
 import android.net.Uri;
+import android.os.Build;
 import android.os.Bundle;
 import android.os.Vibrator;
 import android.preference.PreferenceManager;
 import android.support.design.widget.NavigationView;
 import android.support.v4.app.FragmentManager;
 import android.support.v4.app.FragmentTransaction;
+import android.support.v4.content.ContextCompat;
 import android.support.v4.view.GravityCompat;
 import android.support.v4.widget.DrawerLayout;
 import android.support.v7.app.ActionBarDrawerToggle;
 import android.support.v7.app.AppCompatActivity;
 import android.support.v7.widget.Toolbar;
+import android.view.Gravity;
 import android.view.Menu;
 import android.view.MenuInflater;
 import android.view.MenuItem;
+import android.view.View;
 import android.widget.Toast;
 
 
 import com.negah.telescope.app.R;
 import com.negah.telescope.app.fragments.FragmentFavorite;
 import com.negah.telescope.app.fragments.TabFragment;
+import com.negah.telescope.app.other.E;
+import com.negah.telescope.app.other.TelescopeEvents;
 import com.negah.telescope.app.preferences.SettingsActivity;
 import com.negah.telescope.app.utilities.ShakeListener;
+
+import me.cheshmak.android.sdk.core.Cheshmak;
+
 
 public class MainActivity extends AppCompatActivity{
 
@@ -36,14 +47,18 @@ public class MainActivity extends AppCompatActivity{
     FragmentTransaction mFragmentTransaction;
     SharedPreferences preferences;
     ShakeListener mShaker;
-
+    View navigationHeader;
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         //StartAppAd.init(this, getString(R.string.startapp_account_id), getString(R.string.startapp_app_id, false));
-
+        /*if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.JELLY_BEAN_MR1) {
+            if (getWindow().getDecorView().getLayoutDirection() == View.LAYOUT_DIRECTION_LTR){
+                getWindow().getDecorView().setLayoutDirection(View.LAYOUT_DIRECTION_RTL);
+            }
+        }*/
         setContentView(R.layout.activity_main);
-
+        E.getInstance(this);
         /*OneSignal.idsAvailable(new OneSignal.IdsAvailableHandler() {
             @Override
             public void idsAvailable(String userId, String registrationId) {
@@ -64,6 +79,7 @@ public class MainActivity extends AppCompatActivity{
         toolbar = (Toolbar) findViewById(R.id.toolbar);
         if (toolbar != null) {
             setSupportActionBar(toolbar);
+
         }
 
         //show admob banner ad
@@ -105,10 +121,25 @@ public class MainActivity extends AppCompatActivity{
 //            public void onFailedToReceiveAd(Ad arg0) {
 //            }
 //        });
-
+       /* navigationHeader=findViewById(R.id.na_header_container);
+        navigationHeader.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+                Intent i=new Intent(MainActivity.this,SignupActivity.class);
+                startActivity(i);
+            }
+        });*/
         mDrawerLayout = (DrawerLayout) findViewById(R.id.drawer_layout);
-        mNavigationView = (NavigationView) findViewById(R.id.main_drawer) ;
 
+        mNavigationView = (NavigationView) findViewById(R.id.main_drawer) ;
+        navigationHeader=mNavigationView.getHeaderView(0);
+        navigationHeader.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+                Intent i=new Intent(MainActivity.this,SignupActivity.class);
+                startActivity(i);
+            }
+        });
         mFragmentManager = getSupportFragmentManager();
         mFragmentTransaction = mFragmentManager.beginTransaction();
         mFragmentTransaction.replace(R.id.frame_container, new TabFragment()).commit();
@@ -135,7 +166,7 @@ public class MainActivity extends AppCompatActivity{
                     final String appName = getPackageName();
                     try {
                         startActivity(new Intent(Intent.ACTION_VIEW, Uri.parse("market://details?id=" + appName)));
-                    } catch (android.content.ActivityNotFoundException anfe) {
+                    } catch (ActivityNotFoundException anfe) {
                         startActivity(new Intent(Intent.ACTION_VIEW, Uri.parse("http://play.google.com/store/apps/details?id=" + appName)));
                     }
                 }
@@ -155,7 +186,20 @@ public class MainActivity extends AppCompatActivity{
         });
 
         Toolbar toolbar = (Toolbar) findViewById(R.id.toolbar);
-        ActionBarDrawerToggle mDrawerToggle = new ActionBarDrawerToggle(this, mDrawerLayout, toolbar, R.string.drawer_open, R.string.drawer_close);
+        ActionBarDrawerToggle mDrawerToggle = new ActionBarDrawerToggle(this, mDrawerLayout, toolbar, R.string.drawer_open, R.string.drawer_close){
+            @Override
+            public boolean onOptionsItemSelected(MenuItem item) {
+                if (item != null && item.getItemId() == android.R.id.home) {
+                    if (mDrawerLayout.isDrawerOpen(Gravity.RIGHT)) {
+                        mDrawerLayout.closeDrawer(Gravity.RIGHT);
+                    }
+                    else {
+                        mDrawerLayout.openDrawer(Gravity.RIGHT);
+                    }
+                }
+                return false;
+            }
+        };
 
         mDrawerLayout.setDrawerListener(mDrawerToggle);
 
@@ -169,9 +213,24 @@ public class MainActivity extends AppCompatActivity{
             {
                 final Vibrator vibe = (Vibrator)getSystemService(Context.VIBRATOR_SERVICE);
                 vibe.vibrate(100);
+                Cheshmak.trackEvent(TelescopeEvents.SHAKE_EVENT);
                 Toast.makeText(MainActivity.this,"shake",Toast.LENGTH_SHORT).show();
             }
         });
+
+
+        /*setSupportActionBar(toolbar);
+
+        getSupportActionBar().setDisplayShowHomeEnabled(true);
+        getSupportActionBar().setDisplayShowTitleEnabled(true);
+        toolbar.setNavigationIcon(R.drawable.telescopelogo);
+        toolbar.getNavigationIcon().setTint(Color.WHITE);
+        toolbar.setNavigationOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+                //finish();
+            }
+        });*/
     }
 
 
@@ -250,10 +309,9 @@ public class MainActivity extends AppCompatActivity{
     @Override
     protected void onDestroy() {
         //mAdView.destroy();
-
+        E.getInstance(this).Clear();
         super.onDestroy();
     }
-
 
 
 }

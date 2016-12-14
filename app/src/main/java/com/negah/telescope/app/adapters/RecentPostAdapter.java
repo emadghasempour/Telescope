@@ -19,7 +19,7 @@ import java.util.List;
  * Created by emad on 11/23/2016.
  */
 public class RecentPostAdapter extends RecyclerView.Adapter<RecentPostAdapter.RecentItem>{
-    public final int POST_TYPE_AD=3, POST_TYPE_APP=1,POST_TYPE_CUSTOM=2;
+    public static final int POST_TYPE_AD=3, POST_TYPE_APP=1,POST_TYPE_CUSTOM=2;
 
     List<Item> items;
     Context context;
@@ -51,6 +51,10 @@ public class RecentPostAdapter extends RecyclerView.Adapter<RecentPostAdapter.Re
             View view=inflater.inflate(R.layout.recent_post_item,parent,false);
             return new RecentItemCustom(view);
         }
+        else if(viewType==POST_TYPE_AD){
+            View view=inflater.inflate(R.layout.category_banner,parent,false);
+            return new RecentAdItem(view);
+        }
         return null;
     }
 
@@ -71,6 +75,11 @@ public class RecentPostAdapter extends RecyclerView.Adapter<RecentPostAdapter.Re
                 RecentItemCustom recentItemCustom = (RecentItemCustom) holder;
                 recentItemCustom.title.setText(items.get(position).getTitle());
                 Picasso.with(context).load(items.get(position).getImagePath()).into(recentItemCustom.background);
+                break;
+            case POST_TYPE_AD:
+                RecentAdItem recentAdItem= (RecentAdItem) holder;
+                recentAdItem.title.setText(items.get(position).getTitle());
+                Picasso.with(context).load(items.get(position).getImagePath()).into(recentAdItem.adBackground);
         }
     }
 
@@ -119,6 +128,19 @@ public class RecentPostAdapter extends RecyclerView.Adapter<RecentPostAdapter.Re
             background= (ImageView) itemView.findViewById(R.id.recent_post_background);
             parent= (CardView) itemView.findViewById(R.id.recent_post_parent);
             parent.setOnClickListener(this);
+        }
+    }
+
+    private class RecentAdItem extends RecentItem{
+        ImageView adBackground;
+        CustomFontTextView title;
+        CardView parent;
+        public RecentAdItem(View itemView) {
+            super(itemView);
+            adBackground= (ImageView) itemView.findViewById(R.id.bannerCategory_img);
+            title= (CustomFontTextView) itemView.findViewById(R.id.bannerCategory_txt);
+            parent= (CardView) itemView.findViewById(R.id.bannerCategory_parent);
+
         }
     }
 

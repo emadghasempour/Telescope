@@ -1,6 +1,6 @@
 <?xml version="1.0" encoding="utf-8"?>
 <resources>
-
+    <string name="cheshmak_appkey">VNW3iWBivJ6FAWeHjY3U7w==</string>
     <!--application name-->
     <string name="app_name">Telescope</string>
     <!--transitions-->
@@ -17,6 +17,9 @@
     <string name="title_app_name">Application Name</string>
     <string name="title_app_version">Build Version</string>
     <string name="title_app_email">Email</string>
+    <string name="title_app_password">password</string>
+    <string name="or">or</string>
+    <string name="title_app_signinwithgoogle">Signin with Google</string>
     <string name="title_app_copyright">Copyright</string>
 
     <!--google cloud messaging (gmc) push notification-->
@@ -101,5 +104,22 @@
     <string name="showRatePanel">submit your Rate</string>
     <string name="submit_commnet">submit</string>
     <string name="UILable">UI</string>
+    <string name="title_app_signin">signin</string>
+    <string name="title_app_youShouldSignIn">you should signin to your account</string>
+    <string name="title_app_signup">signup</string>
+    <string name="dismiss">dismiss</string>
+    <string name="pleaseWait">Please Wait</string>
+
+    <string name="ratetitleUI">UI</string>
+    <string name="ratetitleUX">UX</string>
+    <string name="ratetitleUsibity">usibility</string>
+    <string name="ratetitleOptions">options</string>
+    <string name="ratetitleCorrenct">correct</string>
+    <string name="introduce_txt">introduce</string>
+    <string name="drawer_setting_txt">setting</string>
+    <string name="please_login_or_signup">login</string>
+    <string name="show_all_comments">show all comments</string>
+    <string name="total_rates">مجموع نظرها</string>
+
 
 </resources>

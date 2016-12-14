@@ -8,6 +8,10 @@
         <item name="colorAccent">@color/ColorAccent</item>
         <item name="drawerArrowStyle">@style/DrawerArrowStyle</item>
     </style>
+
+    <style name="AppTheme.NoActionBar" parent="AppTheme">
+        <item name="windowActionBar">false</item>
+    </style>
      <style name="AppTheme_Dialog" parent="Theme.AppCompat.Light.Dialog">
          <item name="colorPrimary">@color/ColorPrimary</item>
          <item name="colorPrimaryDark">@color/ColorPrimaryDark</item>
@@ -28,6 +32,31 @@
         <item name="colorAccent">@color/ratebar_color1</item>
     </style>
 
+
+
+    <style name="AVLoadingIndicatorView">
+        <item name="minWidth">48dip</item>
+        <item name="maxWidth">48dip</item>
+        <item name="minHeight">48dip</item>
+        <item name="maxHeight">48dip</item>
+        <item name="indicatorName">LineScalePulseOutRapidIndicator</item>
+    </style>
+
+    <style name="AVLoadingIndicatorView.Large">
+        <item name="minWidth">76dip</item>
+        <item name="maxWidth">76dip</item>
+        <item name="minHeight">76dip</item>
+        <item name="maxHeight">76dip</item>
+        <item name="indicatorName">LineScalePulseOutRapidIndicator</item>
+    </style>
+
+    <style name="AVLoadingIndicatorView.Small">
+        <item name="minWidth">24dip</item>
+        <item name="maxWidth">24dip</item>
+        <item name="minHeight">24dip</item>
+        <item name="maxHeight">24dip</item>
+        <item name="indicatorName">LineScalePulseOutRapidIndicator</item>
+    </style>
 
 
 </resources>

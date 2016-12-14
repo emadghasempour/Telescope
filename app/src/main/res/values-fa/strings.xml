@@ -7,5 +7,26 @@
     <string name="markets_link">مارکت ها</string>
     <string name="submit_commnet">ثبت نظر</string>
     <string name="UILable">رابط کاربری</string>
+    <string name="title_app_email">ایمیل</string>
+    <string name="title_app_password">گذرواژه</string>
+    <string name="title_app_signin">ورود</string>
+    <string name="title_app_signinwithgoogle">با اکانت گوگل وارد شوید</string>
+    <string name="title_app_youShouldSignIn">برای ثبت نظر ابتدا باید وارد اکانت خود شوید</string>
+    <string name="title_app_signup">ثبت نام</string>
+    <string name="dismiss">بی خیال</string>
+    <string name="tab1">تازه ها</string>
+    <string name="tab2">دسته بندی ها</string>
+    <string name="pleaseWait">لطفا شکیبا باشید</string>
+
+    <string name="ratetitleUI">رابط کاربری</string>
+    <string name="ratetitleUX">تجربه کاربرد</string>
+    <string name="ratetitleUsibity">قابلیت استفاده</string>
+    <string name="ratetitleOptions">امکانات</string>
+    <string name="ratetitleCorrenct">عملکرد</string>
+    <string name="introduce_txt">معرفی برنامه</string>
+    <string name="drawer_setting_txt">تنظیمات</string>
+    <string name="please_login_or_signup">ورود به حساب تلسکوپ</string>
+    <string name="show_all_comments">نمایش همه نظرات</string>
+    <string name="total_rates">مجموع نظرها</string>
 
 </resources>

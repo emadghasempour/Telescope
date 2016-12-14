@@ -22,6 +22,28 @@ public class Rate {
     @SerializedName("from")
     @Expose
     private Integer from;
+    @SerializedName("options")
+    @Expose
+    private Float options;
+    @SerializedName("corret")
+    @Expose
+    private Float corret;
+
+    public void setCorret(Float corret) {
+        this.corret = corret;
+    }
+
+    public void setOptions(Float options) {
+        this.options = options;
+    }
+
+    public Float getCorret() {
+        return corret;
+    }
+
+    public Float getOptions() {
+        return options;
+    }
 
     /**
      * 

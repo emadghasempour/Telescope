@@ -9,6 +9,8 @@
     <uses-permission android:name="android.permission.VIBRATE" />
     <uses-permission android:name="android.permission.RECEIVE_BOOT_COMPLETED" />
     <uses-permission android:name="android.permission.WAKE_LOCK" />
+    <uses-permission android:name="android.permission.ACCESS_FINE_LOCATION" />​
+    ​<uses-permission android:name="android.permission.ACCESS_COARSE_LOCATION" />
     <application
 
         android:allowBackup="true"
@@ -43,6 +45,14 @@
         </activity>
         <activity
             android:name="com.negah.telescope.app.activities.PostDetailActivity"
+            >
+        </activity>
+        <activity
+            android:name="com.negah.telescope.app.activities.SignupActivity"
+            >
+        </activity>
+        <activity
+            android:name="com.negah.telescope.app.activities.ImageFragmentActivity"
             >
         </activity>
         <activity
@@ -118,6 +128,14 @@
             android:configChanges="keyboard|keyboardHidden|orientation|screenLayout|uiMode|screenSize|smallestScreenSize" />-->
         <activity android:name=".activities.PostActivity"></activity>
         <activity android:name=".activities.CommentsActivity"></activity>
+
+        <meta-data
+            android:name="io.fabric.ApiKey"
+            android:value="c45f2902510749964410fcddb9f8eae5affd3fad" />
+
+        <service android:name=".service.NotificationService">
+           <meta-data android:name="cheshmakPush" android:value="startServiceOnPush" ></meta-data>
+        </service>
 
     </application>
 

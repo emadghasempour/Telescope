@@ -27,15 +27,17 @@ import android.widget.ProgressBar;
 import android.widget.Toast;
 
 
-import com.negah.telescope.app.Config;
 import com.negah.telescope.app.R;
 import com.negah.telescope.app.activities.AppDetailsActivity;
 import com.negah.telescope.app.activities.PostDetailActivity;
+import com.negah.telescope.app.adapters.AdFragmentPagerAdapter;
 import com.negah.telescope.app.adapters.AdapterRecent;
 import com.negah.telescope.app.adapters.RecentPostAdapter;
 import com.negah.telescope.app.json.JsonConfig;
 import com.negah.telescope.app.json.JsonUtils;
 import com.negah.telescope.app.models.ItemRecent;
+import com.negah.telescope.app.other.E;
+import com.negah.telescope.app.other.TelescopeEvents;
 import com.negah.telescope.app.services.Network;
 import com.negah.telescope.app.services.api.APIs;
 import com.negah.telescope.app.services.lists.TelescopeBanner;
@@ -48,6 +50,7 @@ import org.json.JSONObject;
 import java.util.ArrayList;
 import java.util.List;
 
+import me.cheshmak.android.sdk.core.Cheshmak;
 import retrofit2.Call;
 import retrofit2.Callback;
 import retrofit2.Response;
@@ -110,7 +113,7 @@ public class FragmentNewsRecent extends Fragment {
         util = new JsonUtils(this.getActivity());
 
         if (JsonUtils.isNetworkAvailable(getActivity())) {
-            new MyTask().execute(Config.SERVER_URL + "/api.php?latest_news=70");
+            E.getInstance(getContext()).ShowLoading(getResources().getString(R.string.pleaseWait));
         } else {
             Toast.makeText(getActivity(), getResources().getString(R.string.failed_connect_network), Toast.LENGTH_SHORT).show();
         }
@@ -122,9 +125,9 @@ public class FragmentNewsRecent extends Fragment {
                 new Handler().postDelayed(new Runnable() {
                     @Override
                     public void run() {
-                        swipeRefreshLayout.setRefreshing(false);
+                       /* swipeRefreshLayout.setRefreshing(false);
                         adapter.clear();
-                        new RefreshTask().execute(Config.SERVER_URL + "/api.php?latest_news=70");
+                        new RefreshTask().execute(Config.SERVER_URL + "/api.php?latest_news=70");*/
 
 
                     }
@@ -178,21 +181,24 @@ public class FragmentNewsRecent extends Fragment {
 
         APIs apIs= Network.getRetrofit().create(APIs.class);
         Call<TelescopeBanner> call =apIs.loadFullBanners();
-        /*call.enqueue(new Callback<TelescopeBanner>() {
+        adViewPager.setVisibility(View.GONE);
+        call.enqueue(new Callback<TelescopeBanner>() {
             @Override
             public void onResponse(Call<TelescopeBanner> call, Response<TelescopeBanner> response) {
                 Log.d(TAG,"" + response.body().banners.size());
-                AdFragmentPagerAdapter pagerAdapter=new AdFragmentPagerAdapter(getActivity().getSupportFragmentManager()
-                        ,response.body().banners);
-                adViewPager.setAdapter(pagerAdapter);
-
+                if(true) { //TODO CHECK IF ANY TOP AD AVALIBLE...
+                    adViewPager.setVisibility(View.GONE);
+                }else{
+                    AdFragmentPagerAdapter pagerAdapter=new AdFragmentPagerAdapter(getActivity().getSupportFragmentManager()
+                            ,response.body().banners);
+                    adViewPager.setAdapter(pagerAdapter);
+                }
             }
-
             @Override
             public void onFailure(Call<TelescopeBanner> call, Throwable t) {
                 Log.d(TAG,"FAILED");
             }
-        });*/
+        });
 
         Call<TelescopeRecent> calllatest =apIs.loadRecent();
         calllatest.enqueue(new Callback<TelescopeRecent>() {
@@ -202,18 +208,25 @@ public class FragmentNewsRecent extends Fragment {
                 recentAdapter.setOnItemClickListener(new RecentPostAdapter.OnItemClickListener() {
                     @Override
                     public void onItemClick(View view, int position) {
-                        if(response.body().items.get(position).getPostType()==1) {
+                        if(response.body().items.get(position).getPostType()==RecentPostAdapter.POST_TYPE_APP) {
                             Intent i2 = new Intent(getActivity(), AppDetailsActivity.class);
                             getActivity().startActivity(i2);
                         }
-                        else if(response.body().items.get(position).getPostType()==2){
+                        else if(response.body().items.get(position).getPostType()==RecentPostAdapter.POST_TYPE_CUSTOM){
                             Intent i2 = new Intent(getActivity(), PostDetailActivity.class);
                             getActivity().startActivity(i2);
+                        }
+                        else if(response.body().items.get(position).getPostType()==RecentPostAdapter.POST_TYPE_AD){
+                            Cheshmak.trackEvent(TelescopeEvents.M_ClLICK_Ad_EVENT);
                         }
 
                     }
                 });
                 recyclerView.setAdapter(recentAdapter);
+                if(E.getInstance(getContext()).isLoading()){
+                    E.getInstance(getContext()).DismissLoading();
+                }
+                E.getInstance(getContext()).ShowLoading(getResources().getString(R.string.pleaseWait));
             }
 
             @Override
@@ -221,6 +234,7 @@ public class FragmentNewsRecent extends Fragment {
                 Log.e(TAG,"FAILED"+t.getLocalizedMessage());
             }
         });
+
 
        /* Retrofit retrofit=new Retrofit.Builder()
                 .baseUrl("http://www.negahgames.com")

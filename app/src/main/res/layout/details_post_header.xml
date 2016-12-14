@@ -22,9 +22,9 @@
         android:id="@+id/desc_post_title"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-
+        android:gravity="center"
         android:text="title"
-        android:layout_below="@id/desc_post_date"
+        android:layout_centerInParent="true"
         android:textSize="@dimen/text_size_large"
         android:layout_centerHorizontal="true"
         android:textColor="@color/username_color"

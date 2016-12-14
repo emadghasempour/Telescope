@@ -1,0 +1,32 @@
+<?xml version="1.0" encoding="utf-8"?>
+<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+
+    >
+    <com.negah.telescope.app.indocator.AVLoadingIndicatorView
+        android:id="@+id/telescopeLoading_prg"
+
+        android:layout_width="wrap_content"
+        android:layout_alignParentTop="true"
+        android:layout_height="wrap_content"
+        style="@style/AVLoadingIndicatorView.Small"
+        android:layout_centerHorizontal="true"
+        app:indicatorColor="@color/loading_color"
+        android:layout_marginTop="15dp"
+        android:layout_marginBottom="15dp"
+        />
+    <com.negah.telescope.app.view.CustomFontTextView
+        android:id="@+id/telescopeLoading_txt"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:gravity="center"
+        android:textSize="@dimen/text_size_small"
+        android:text="@string/pleaseWait"
+        android:layout_centerHorizontal="true"
+        android:layout_marginBottom="15dp"
+        android:layout_below="@id/telescopeLoading_prg"
+        />
+</RelativeLayout>
